@@ -4,11 +4,44 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
 generator client {
   provider = "prisma-client-js"
 }
 
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+model User {
+  id       Int      @id @default(autoincrement())
+  username String   @unique
+  password String
+  teams    Team[]
+}
+
+model Team {
+  id       Int      @id @default(autoincrement())
+  name     String
+  ownerId  Int
+  owner    User     @relation(fields: [ownerId], references: [id])
+  pokemon  Pokemon[]
+}
+
+model Pokemon {
+  id       Int      @id @default(autoincrement())
+  name     String   @unique
+  ability  String
+  moves    Move[]
+  teamId   Int
+  team     Team     @relation(fields: [teamId], references: [id])
+}
+
+model Move {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  power     Int
+  accuracy  Int
+  pokemon   Pokemon? @relation(fields: [pokemonId], references: [id])
+  pokemonId Int?
 }
