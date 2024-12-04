@@ -8,8 +8,8 @@ app.use(require("morgan")("dev"));
 app.use(express.json());
 
 app.use(require("./api/auth").router);
-app.use("/products", require("./api/products"));
-app.use("/orders", require("./api/orders"));
+// app.use("/teams", require("./api/products"));
+// app.use("/pokemon", require("./api/orders"));
 
 app.use((req, res, next) => {
   next({ status: 404, message: "Endpoint not found." });
