@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
-
+import { useNavigate } from "react-router-dom";
 
 const NationalDex = () => {
-
+  const navigate = useNavigate();
   const [pokemon, setPokemon] = useState([]);
 
   useEffect(() => {
@@ -55,7 +55,7 @@ const NationalDex = () => {
           ) : (
             pokemon.map((singlePokemon) => {
               return (
-                <div key={singlePokemon.name}>
+                <div onClick={() => { navigate(`/NationalDex/${singlePokemon.id}`)} } key={singlePokemon.name}>
                   <img src={singlePokemon.sprite} alt={singlePokemon.name} />
                   <h3>{singlePokemon.name[0].toUpperCase() + singlePokemon.name.slice(1)}</h3>
                 </div>
