@@ -1,3 +1,26 @@
 body {
   background-color: grey;
 }
+
+#pokemon151 {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#pokemon151 > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+#selected-pokemon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+#selected-pokemon > .poke-images {
+  flex-direction: row;
+}
