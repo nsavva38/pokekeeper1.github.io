@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-const SelectedPokemon = () => {
+const SelectedPokemon = ({ teams, setTeams }) => {
   const navigate = useNavigate();
   const [pokemonDetails, setPokemonDetails] = useState(null);
+  const [selectedTeam, setSelectedTeam] = useState(""); // To track the chosen team
   const { id } = useParams();
 
   useEffect(() => {
@@ -19,10 +20,7 @@ const SelectedPokemon = () => {
           (entry) => entry.language.name === "en"
         ).flavor_text;
 
-
         const sanitizedDescription = pokeDescription.replace(/[\n\r\f]/g, " ");
-
-        console.log(singlePokemon)
 
         const detailedPokemon = {
           name: singlePokemon.name,
@@ -30,7 +28,7 @@ const SelectedPokemon = () => {
           shinySprite: singlePokemon.sprites.front_shiny,
           id: singlePokemon.id,
           type: singlePokemon.types.map((typeObj) => typeObj.type.name).join(", "),
-          description: sanitizedDescription
+          description: sanitizedDescription,
         };
 
         setPokemonDetails(detailedPokemon);
@@ -40,11 +38,21 @@ const SelectedPokemon = () => {
     };
 
     getSinglePokemon();
-  }, []);
+  }, [id]);
 
   const addToTeam = () => {
-    console.log(`Added to Team`);
-  }
+    if (!selectedTeam) {
+      alert("Please select a team!");
+      return;
+    }
+
+    setTeams((prevTeams) => ({
+      ...prevTeams,
+      [selectedTeam]: [...(prevTeams[selectedTeam] || []), pokemonDetails],
+    }));
+
+    alert(`${pokemonDetails.name} added to ${selectedTeam}!`);
+  };
 
   //------------------------------------RETURN-----------------------------------//
   if (!pokemonDetails) {
@@ -61,7 +69,17 @@ const SelectedPokemon = () => {
       <p>Type: {pokemonDetails.type.toUpperCase()}</p>
       <p>PokeDex Entry: {pokemonDetails.description}</p>
 
-      <button onClick={ addToTeam }>Add to Team</button>
+      {/* Team Selection Dropdown */}
+      <select value={selectedTeam} onChange={(event) => setSelectedTeam(event.target.value)}>
+        <option value="">Select a Team</option>
+        {Object.keys(teams).map((teamName) => (
+          <option key={teamName} value={teamName}>
+            {teamName}
+          </option>
+        ))}
+      </select>
+
+      <button onClick={addToTeam}>Add to Team</button>
       <button onClick={() => navigate(`/NationalDex`)}>Back to National Dex</button>
     </section>
   );
