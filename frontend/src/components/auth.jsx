@@ -9,14 +9,16 @@
 // in react create a form containing
   // needs onSubmit and event default
   // if (fields empty then) 
-  // {message user fields empty, enter credentials}
+    // {message user: fields empty, enter credentials}
   // else {
-    // user needs to have 
-    // id? will the db give us a number?
-    // username: string must be must be unique
-    // password: string
-    // teams? default is 0 
-    // error? (db should throw correct errors)
+    // try {}
+      // user needs to have 
+      // id? will the db give us a number?
+      // username: string must be must be unique
+      // password: string
+      // teams? default is 0 
+    // catch (e) {}
+      // display error? (db should throw correct errors)
     // are we giving token upon registration?
       // if so then access to protected routes
       // if not then direct to login path
