@@ -45,7 +45,7 @@ const Register = () => {
       </nav>
       <form onSubmit={handleSubmit}>
         <h2>Register</h2>
-        {error && <p style={{ color: 'red' }}>{error}</p>} {/* Conditionally render error message */}
+        {error && <p style={{ color: `darkred` }}>{error}</p>} {/* Conditionally render error message */}
         <input
           type="text"
           placeholder="Username"
