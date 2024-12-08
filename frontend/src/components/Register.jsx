@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import api from './api';// imports the centralized APi
+import api from './api'; // imports the centralized API
 
 const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(''); // State for error messages
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -27,7 +28,7 @@ const Register = () => {
       }
     } catch (error) {
       console.error('Registration error:', error);
-      alert('An error occurred during registration.');//show error from backend 
+      setError(error.response?.data?.error || 'An error occurred during registration.'); // Set error message from backend
     }
   };
 
@@ -44,6 +45,7 @@ const Register = () => {
       </nav>
       <form onSubmit={handleSubmit}>
         <h2>Register</h2>
+        {error && <p style={{ color: 'red' }}>{error}</p>} {/* Conditionally render error message */}
         <input
           type="text"
           placeholder="Username"

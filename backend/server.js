@@ -9,7 +9,8 @@ const PORT = process.env.PORT || 3000; //added process.env
 app.use(require("morgan")("dev"));
 app.use(express.json());
 
-app.use(cors({origin:'https://pokekeeper.netlify.app' }));//added cors and set url to allow requests from frontend
+// change from localhost to `https://pokekeeper.netlify.app/` when not testing
+app.use(cors({origin:/localhost/ }));//added cors and set url to allow requests from frontend
 
 app.use(bodyParser.json());//added 
 app.use(require("./api/auth").router);
