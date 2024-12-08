@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Account = ({teams,setTeams,teamName,setTeamName}) => {
+  const navigate = useNavigate();
 
 
   // Form submit handler
@@ -14,9 +15,29 @@ const Account = ({teams,setTeams,teamName,setTeamName}) => {
     }
   };
 
+
+  const removeFromTeam = (team, index) => {
+    setTeams((prevTeams) => ({
+      ...prevTeams,
+      [team]: prevTeams[team].filter((_, i) => i !== index),
+    }));
+  }
+
+  const deleteTeam = (team) => {
+    setTeams((prevTeams) => {
+      const updatedTeams = { ...prevTeams };
+      delete updatedTeams[team];
+      return updatedTeams;
+    }) 
+  }
+
+
+  //------------------------------------RETURN-----------------------------------//
+
+
   return (
     <>
-      <h2>Hello User</h2>
+      <h2 className="page-title">Hello User</h2>
       <p>Make a New Team</p>
       <form onSubmit={makeTeam}>
         <input
@@ -28,17 +49,37 @@ const Account = ({teams,setTeams,teamName,setTeamName}) => {
       </form>
 
       <h3>My Teams</h3>
-      <ol>
-        {Object.keys(teams).map((team) => (
-          <li key={team}>
-            <strong>{team}</strong>: {JSON.stringify(teams[team])}
-            {team}
-          </li>
-        ))}
-      </ol>
+      <section id="teams">
+      <ul>
+        {Object.keys(teams).map((team) => {
+          return (
+            <li key={team}>
+              <section id="teamName-and-deleteButton">
+                <h3>{team}</h3>
+                <button onClick={() => deleteTeam(team)}>Delete Team</button>
+              </section>
+              <section id="team-members">
+                {teams[team].map((pokemon, index) => {
+                  return (
+                    <section id="member">
+                      <img src={pokemon.sprite} onClick={() => { navigate(`/NationalDex/${pokemon.id}`)} }/>
+                      <p onClick={() => { 
+                        navigate(`/NationalDex/${pokemon.id}`)} }
+                        >{pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}
+                      </p>
 
-      {console.log("teamName:", teamName)}
-      {console.log("teams:", teams)}
+                      <button
+                        onClick={() => removeFromTeam(team, index)}
+                      >Remove from Team</button>
+                    </section>
+                    )
+                  })}
+              </section>
+            </li>
+          )
+        })}
+      </ul>
+      </section>
     </>
   );
 };

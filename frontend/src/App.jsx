@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, Link } from "react-router-dom"
 import { useState } from "react"
 
 import NationalDex from "./components/NationalDex.jsx"
@@ -14,7 +14,18 @@ const [teams, setTeams] = useState({}); // Object holding all teams
 //------------------------------------RETURN-----------------------------------//
  return (
   <>
-    <h1>Practice PokeKeeper</h1>
+
+    <section id="navigation-and-title">
+
+      <nav>
+        <Link to={`/Account`}>Account</Link>
+        <Link to={"/NationalDex"}>National Dex</Link>
+      </nav>
+
+
+      <h1>Practice PokeKeeper</h1>
+    </section>
+
     <Routes>
       <Route path="/Account" element={<Account 
         teamName={teamName} setTeamName={setTeamName}

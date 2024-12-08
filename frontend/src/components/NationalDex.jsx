@@ -46,7 +46,7 @@ const NationalDex = () => {
 
   return (
     <>
-      <h2>National Dex</h2>
+      <h2 className="page-title">National Dex</h2>
 
       <section id="pokemon151">
         {
@@ -55,8 +55,9 @@ const NationalDex = () => {
           ) : (
             pokemon.map((singlePokemon) => {
               return (
-                <div onClick={() => { navigate(`/NationalDex/${singlePokemon.id}`)} } key={singlePokemon.name}>
-                  <img src={singlePokemon.sprite} alt={singlePokemon.name} />
+                <div key={singlePokemon.name}>
+                  <img src={singlePokemon.sprite} alt={singlePokemon.name}
+                  onClick={() => { navigate(`/NationalDex/${singlePokemon.id}`)} } />
                   <h3>{singlePokemon.name[0].toUpperCase() + singlePokemon.name.slice(1)}</h3>
                 </div>
               )
