@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-// import axios from 'axios';
 import api from './api';// imports the centralized APi
 
 const Register = () => {
@@ -28,7 +27,7 @@ const Register = () => {
       }
     } catch (error) {
       console.error('Registration error:', error);
-      alert('An error occurred during registration.');
+      alert('An error occurred during registration.');//show error from backend 
     }
   };
 
