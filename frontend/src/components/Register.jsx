@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
+// import axios from 'axios';
+import api from './api';// imports the centralized APi
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -16,7 +17,7 @@ const Register = () => {
     }
 
     try {
-      const response = await axios.post('https://pokekeeper.onrender.com/register', { username, password });
+      const response = await api.post('/register', { username, password });
 
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
