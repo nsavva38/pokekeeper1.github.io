@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 const allowedOrigins = [
   'https://pokekeeper.netlify.app', // Frontend URL
   'http://localhost:5173', // Local frontend development URL
-  'https://deploy-preview-42--pokekeeper.netlify.app/', // netlify preview url
+  'https://deploy-preview-42--pokekeeper.netlify.app' // Netlify deploy preview
 ];
 
 // Configure CORS to allow multiple origins
