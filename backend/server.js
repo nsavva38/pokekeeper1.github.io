@@ -1,12 +1,17 @@
 require("dotenv").config();
 
 const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser")
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000; //added process.env
 
 app.use(require("morgan")("dev"));
 app.use(express.json());
 
+app.use(cors({origin:'https://pokekeeper.netlify.app' }));//added cors and set url to allow requests from frontend
+
+app.use(bodyParser.json());//added 
 app.use(require("./api/auth").router);
 // app.use("/teams", require("./api/products"));
 // app.use("/pokemon", require("./api/orders"));

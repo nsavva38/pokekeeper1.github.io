@@ -16,7 +16,7 @@ const Login = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:3000/login', { username, password });
+      const response = await axios.post('https://pokekeeper.onrender.com/login', { username, password });
 
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);

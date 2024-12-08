@@ -15,12 +15,8 @@ const Register = () => {
       return;
     }
 
-    // console.log('Sending request to backend:', { username, password });
-
     try {
-      const response = await axios.post('http://localhost:3000/register', { username, password });
-
-      console.log('Response from backend:', response.data);
+      const response = await axios.post('https://pokekeeper.onrender.com/register', { username, password });
 
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
@@ -31,7 +27,7 @@ const Register = () => {
       }
     } catch (error) {
       console.error('Registration error:', error);
-      alert('An error occurred during registration.');// change to show req err 400 message:name taken
+      alert('An error occurred during registration.');
     }
   };
 
