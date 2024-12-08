@@ -15,8 +15,12 @@ const Register = () => {
       return;
     }
 
+    console.log('Sending request to backend:', { username, password });
+
     try {
-      const response = await axios.post('/api/register', { username, password });
+      const response = await axios.post('http://localhost:3000/register', { username, password });
+
+      console.log('Response from backend:', response.data);
 
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
@@ -33,7 +37,7 @@ const Register = () => {
 
   return (
     <>
-    <nav>
+      <nav>
         <ul>
           <li><Link to="/">Home</Link></li>
           <li><Link to="/NationalDex">NationalDex</Link></li>
@@ -42,22 +46,22 @@ const Register = () => {
           <li><Link to="/profile">Profile</Link></li>
         </ul>
       </nav>
-    <form onSubmit={handleSubmit}>
-      <h2>Register</h2>
-      <input 
-        type="text" 
-        placeholder="Username" 
-        value={username} 
-        onChange={(e) => setUsername(e.target.value)} 
-      />
-      <input 
-        type="password" 
-        placeholder="Password" 
-        value={password} 
-        onChange={(e) => setPassword(e.target.value)} 
-      />
-      <button type="submit">Register</button>
-    </form>
+      <form onSubmit={handleSubmit}>
+        <h2>Register</h2>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit">Register</button>
+      </form>
     </>
   );
 };

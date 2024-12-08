@@ -16,7 +16,7 @@ const Login = () => {
     }
 
     try {
-      const response = await axios.post('/api/login', { username, password });
+      const response = await axios.post('http://localhost:5173/api/login', { username, password });
 
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
@@ -43,17 +43,17 @@ const Login = () => {
       </nav>
       <form onSubmit={handleSubmit}>
         <h2>Login</h2>
-        <input 
-          type="text" 
-          placeholder="Username" 
-          value={username} 
-          onChange={(e) => setUsername(e.target.value)} 
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         />
-        <input 
-          type="password" 
-          placeholder="Password" 
-          value={password} 
-          onChange={(e) => setPassword(e.target.value)} 
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit">Login</button>
       </form>
