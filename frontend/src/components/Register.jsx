@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
 const Register = () => {
@@ -32,6 +32,16 @@ const Register = () => {
   };
 
   return (
+    <>
+    <nav>
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/NationalDex">NationalDex</Link></li>
+          <li><Link to="/register">Register</Link></li>
+          <li><Link to="/login">Login</Link></li>
+          <li><Link to="/profile">Profile</Link></li>
+        </ul>
+      </nav>
     <form onSubmit={handleSubmit}>
       <h2>Register</h2>
       <input 
@@ -48,6 +58,7 @@ const Register = () => {
       />
       <button type="submit">Register</button>
     </form>
+    </>
   );
 };
 
