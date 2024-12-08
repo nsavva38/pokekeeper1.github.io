@@ -15,7 +15,7 @@ const Register = () => {
       return;
     }
 
-    console.log('Sending request to backend:', { username, password });
+    // console.log('Sending request to backend:', { username, password });
 
     try {
       const response = await axios.post('http://localhost:3000/register', { username, password });
@@ -31,7 +31,7 @@ const Register = () => {
       }
     } catch (error) {
       console.error('Registration error:', error);
-      alert('An error occurred during registration.');
+      alert('An error occurred during registration.');// change to show req err 400 message:name taken
     }
   };
 

@@ -37,7 +37,7 @@ router.post("/register", async (req, res, next) => {
     const user = await prisma.user.create({
       data: {
         username,
-        password, // In a real-world scenario, you should hash the password before storing it
+        password, // change to hash the password before storing it
       },
     });
     const token = createToken(user.id);
@@ -58,7 +58,7 @@ router.post("/login", async (req, res, next) => {
     const user = await prisma.user.findUniqueOrThrow({
       where: { username },
     });
-    // In a real-world scenario, you should compare the hashed password
+    // change to compare hashed password
     if (user.password !== password) {
       throw new Error('Invalid credentials');
     }

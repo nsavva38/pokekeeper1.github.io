@@ -14,8 +14,8 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/NationalDex" element={<NationalDex />} />
         <Route path="/NationalDex/:id" element={<SelectedPokemon />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} /> 
+        <Route path="/login" element={<Login />} /> 
         <Route path="/profile" element={<Profile />} /> {/* Protect this route if needed */}
       </Routes>
 
