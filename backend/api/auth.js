@@ -81,7 +81,9 @@ router.get("/user", authenticate, async (req, res, next) => {
   try {
     const user = await prisma.user.findUniqueOrThrow({
       where: { id: req.user.id },
-      include: {
+      select: {
+        id: true,
+        username: true, // Include the username field
         teams: true, // Assuming you have a relationship setup for teams
       },
     });
@@ -90,6 +92,7 @@ router.get("/user", authenticate, async (req, res, next) => {
     next(e);
   }
 });
+
 
 
 

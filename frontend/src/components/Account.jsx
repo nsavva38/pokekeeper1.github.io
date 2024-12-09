@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const Account = ({ teams, setTeams, teamName, setTeamName, setIsAuthenticated }) => {
+const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
   const [user, setUser] = useState(null); // State for storing user data
+  const [teams, setTeams] = useState({}); // Set default value for teams
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,11 +15,12 @@ const Account = ({ teams, setTeams, teamName, setTeamName, setIsAuthenticated })
           const response = await axios.get('/user', {
             headers: { Authorization: `Bearer ${token}` }
           });
-          setUser(response.data);
-          setTeams(response.data.teams); // Assuming teams are part of the user data
+          console.log('User Data:', response.data); // Log the user data
+          setUser(response.data); // Set user data
+          setTeams(response.data.teams || {}); // Ensure teams is an object
         } catch (error) {
           console.error('Error fetching user data:', error);
-          if (error.response.status === 401) {
+          if (error.response?.status === 401) {
             // Handle unauthorized access, possibly by redirecting to login
             setIsAuthenticated(false);
             navigate('/login');
@@ -28,7 +30,7 @@ const Account = ({ teams, setTeams, teamName, setTeamName, setIsAuthenticated })
     };
 
     fetchUserData();
-  }, [setTeams, setIsAuthenticated, navigate]);
+  }, [setIsAuthenticated, navigate]);
 
   // Form submit handler
   const makeTeam = (event) => {
@@ -48,6 +50,10 @@ const Account = ({ teams, setTeams, teamName, setTeamName, setIsAuthenticated })
     navigate('/login'); // Redirect to the login page
   };
 
+  if (!user) {
+    return <p>Loading...</p>; // Display loading message while fetching user data
+  }
+
   return (
     <>
       <nav>
@@ -58,7 +64,7 @@ const Account = ({ teams, setTeams, teamName, setTeamName, setIsAuthenticated })
           <li><Link to="/login">Login</Link></li>
         </ul>
       </nav>
-      <h2>Hello, {user?.username}</h2>
+      <h2>Hello, {user.username}</h2>
       <p>Make a New Team</p>
       <form onSubmit={makeTeam}>
         <input
@@ -83,6 +89,7 @@ const Account = ({ teams, setTeams, teamName, setTeamName, setIsAuthenticated })
 
       {console.log('teamName:', teamName)}
       {console.log('teams:', teams)}
+      {console.log('user:', user)} // Log the user object
     </>
   );
 };
