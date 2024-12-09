@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom';
-const Account = ({teams,setTeams,teamName,setTeamName}) => {
+import { Link, useNavigate } from 'react-router-dom';
 
+const Account = ({ teams, setTeams, teamName, setTeamName, setIsAuthenticated }) => {
+  const navigate = useNavigate();
 
   // Form submit handler
   const makeTeam = (event) => {
@@ -13,14 +14,21 @@ const Account = ({teams,setTeams,teamName,setTeamName}) => {
     }
   };
 
+  // Logout handler
+  const handleLogout = () => {
+    localStorage.removeItem('token'); // Remove the token from localStorage
+    setIsAuthenticated(false); // Update authentication state
+    navigate('/login'); // Redirect to the login page
+  };
+
   return (
     <>
-    <nav>
+      <nav>
         <ul>
           <li><Link to="/">Home</Link></li>
           <li><Link to="/NationalDex">NationalDex</Link></li>
-          <li><Link to="/Register">Register</Link></li>
-          <li><Link to="/Login">Login</Link></li>
+          <li><Link to="/register">Register</Link></li>
+          <li><Link to="/login">Login</Link></li>
         </ul>
       </nav>
       <h2>Hello User</h2>
@@ -43,6 +51,8 @@ const Account = ({teams,setTeams,teamName,setTeamName}) => {
           </li>
         ))}
       </ol>
+
+      <button onClick={handleLogout}>Logout</button>
 
       {console.log("teamName:", teamName)}
       {console.log("teams:", teams)}

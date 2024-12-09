@@ -29,17 +29,16 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/NationalDex" element={<NationalDex />} />
         <Route path="/NationalDex/:id" element={<SelectedPokemon teams={teams} setTeams={setTeams} />} />
-        <Route path="/Register" element={<Register setIsAuthenticated={setIsAuthenticated} />} />
-        <Route path="/Login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
-        <Route path="/Account" element={<ProtectedRoute isAuthenticated={isAuthenticated}>
-          <Account teamName={teamName} setTeamName={setTeamName} teams={teams} setTeams={setTeams} /></ProtectedRoute>} />
+        <Route path="/register" element={<Register setIsAuthenticated={setIsAuthenticated} />} />
+        <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+        <Route path="/Account" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Account teamName={teamName} setTeamName={setTeamName} teams={teams} setTeams={setTeams} setIsAuthenticated={setIsAuthenticated} /></ProtectedRoute>} />
       </Routes>
     </>
   );
 };
 
 const ProtectedRoute = ({ isAuthenticated, children }) => {
-  return isAuthenticated ? children : <Navigate to="/Login" />;
+  return isAuthenticated ? children : <Navigate to="/login" />;
 };
 
 export default App;
