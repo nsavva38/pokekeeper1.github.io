@@ -20,7 +20,7 @@ const Login = () => {
 
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
-        navigate('/profile');
+        navigate('/Account');
       } else {
         alert('Invalid credentials, please try again.');
       }
