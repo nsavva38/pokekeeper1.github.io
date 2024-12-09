@@ -1,14 +1,16 @@
 const express = require("express");
-const cors = require("cors"); // added cors
-const bodyParser = require("body-parser"); //body parser
+const cors = require("cors");
+const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt"); // Import bcrypt
 const prisma = require("../prisma"); // Import Prisma client
 
 const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET;
+const SALT_ROUNDS = 10; // Define salt rounds for bcrypt
 
-router.use(cors()); // added cors
-router.use(bodyParser.json()); // parse JSON bodies
+router.use(cors());
+router.use(bodyParser.json());
 
 // Function to create JWT token
 function createToken(id) {
@@ -34,10 +36,13 @@ router.use(async (req, res, next) => {
 router.post("/register", async (req, res, next) => {
   const { username, password } = req.body;
   try {
+    // Hash the password before storing it
+    const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
+    console.log("Hashed Password:", hashedPassword);
     const user = await prisma.user.create({
       data: {
         username,
-        password, // change to hash the password before storing it
+        password: hashedPassword,
       },
     });
     const token = createToken(user.id);
@@ -58,8 +63,9 @@ router.post("/login", async (req, res, next) => {
     const user = await prisma.user.findUniqueOrThrow({
       where: { username },
     });
-    // change to compare hashed password
-    if (user.password !== password) {
+    // Compare the hashed password
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
       throw new Error('Invalid credentials');
     }
     const token = createToken(user.id);

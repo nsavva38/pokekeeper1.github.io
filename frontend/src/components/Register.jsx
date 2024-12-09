@@ -21,9 +21,10 @@ const Register = () => {
 
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
+        alert('Registration successful, please log in.');
         navigate('/profile');
       } else {
-        alert('Registration successful, please log in.');
+       
         navigate('/login');
       }
     } catch (error) {
