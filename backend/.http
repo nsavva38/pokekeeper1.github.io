@@ -17,3 +17,23 @@ Content-Type: application/json
   "username": "foo2@bar.baz",
   "password": "foobar"
 }
+### Add new team
+@token = {{login.response.body.token}}
+POST {{host}}/teams
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "test team"
+}
+### Add new team
+@token = {{login.response.body.token}}
+POST {{host}}/pokemon
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Charizard",
+  "ability": "blaze",
+  "teamId": 3
+}

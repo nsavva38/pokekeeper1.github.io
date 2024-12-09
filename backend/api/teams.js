@@ -18,18 +18,18 @@ router.get("/", authenticate, async (req, res, next) => {
 });
 
 router.post("/", authenticate, async (req, res, next) => {
-  const { name, pokemon } = req.body;
+  const { name } = req.body;
   try {
-    const pokemon = pokemon.map((id) => ({ id }));
-    const team = await prisma.playlist.create({
+    //const pokemon = pokemon.map((id) => ({ id }));
+    const team = await prisma.team.create({
       data: {
-        name,
-        pokemon,
-        userId : req.user.id,
-        tracks: { connect : tracks }
+        name: name,
+        //pokemon,
+        ownerId : req.user.id,
+        //tracks: { connect : tracks }
       },
     });
-    res.status(201).json(playlist);
+    res.status(201).json(team);
   } catch (e) {
     next(e);
   }

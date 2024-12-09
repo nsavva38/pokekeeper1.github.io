@@ -23,8 +23,10 @@ model User {
 model Team {
   id       Int      @id @default(autoincrement())
   name     String
-  ownerId  Int
+  
   owner    User     @relation(fields: [ownerId], references: [id])
+  ownerId  Int
+  
   pokemon  Pokemon[]
 }
 
@@ -33,8 +35,9 @@ model Pokemon {
   name     String   @unique
   ability  String
   moves    Move[]
-  teamId   Int
+  
   team     Team     @relation(fields: [teamId], references: [id])
+  teamId   Int
 }
 
 model Move {
