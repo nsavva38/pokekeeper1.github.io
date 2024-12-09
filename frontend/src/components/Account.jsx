@@ -1,7 +1,25 @@
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import api from './api';
 
 const Account = ({ teams, setTeams, teamName, setTeamName, setIsAuthenticated }) => {
+  const [user, setUser] = useState(null); // State for storing user data
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await api.get('/user');
+        setUser(response.data);
+        console.log(response.data)
+        setTeams(response.data.teams); // Assuming teams are part of the user data
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, [setTeams]);
 
   // Form submit handler
   const makeTeam = (event) => {
@@ -31,7 +49,7 @@ const Account = ({ teams, setTeams, teamName, setTeamName, setIsAuthenticated })
           <li><Link to="/login">Login</Link></li>
         </ul>
       </nav>
-      <h2>Hello User</h2>
+      <h2>Hello, {user?.username}</h2>
       <p>Make a New Team</p>
       <form onSubmit={makeTeam}>
         <input

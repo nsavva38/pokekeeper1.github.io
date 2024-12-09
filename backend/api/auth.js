@@ -75,6 +75,24 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
+
+// User details endpoint
+router.get("/user", authenticate, async (req, res, next) => {
+  try {
+    const user = await prisma.user.findUniqueOrThrow({
+      where: { id: req.user.id },
+      include: {
+        teams: true, // Assuming you have a relationship setup for teams
+      },
+    });
+    res.json(user);
+  } catch (e) {
+    next(e);
+  }
+});
+
+
+
 // Authentication middleware
 function authenticate(req, res, next) {
   if (req.user) {
