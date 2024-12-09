@@ -7,7 +7,7 @@ import Register from "./components/Register.jsx";
 import Login from "./components/Login.jsx";
 import Profile from "./components/Profile.jsx";
 import Home from "./components/Home.jsx";
-import Account from "./components/Account.jsx"; // Uncommented the Account import
+import Account from "./components/Account.jsx";
 
 const App = () => {
   // State variables for teamName and teams
