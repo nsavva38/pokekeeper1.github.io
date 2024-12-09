@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import api from './api';
+import axios from 'axios';
 
 const Account = ({ teams, setTeams, teamName, setTeamName, setIsAuthenticated }) => {
   const [user, setUser] = useState(null); // State for storing user data
@@ -8,18 +8,27 @@ const Account = ({ teams, setTeams, teamName, setTeamName, setIsAuthenticated })
 
   useEffect(() => {
     const fetchUserData = async () => {
-      try {
-        const response = await api.get('/user');
-        setUser(response.data);
-        console.log(response.data)
-        setTeams(response.data.teams); // Assuming teams are part of the user data
-      } catch (error) {
-        console.error('Error fetching user data:', error);
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          const response = await axios.get('/user', {
+            headers: { Authorization: `Bearer ${token}` }
+          });
+          setUser(response.data);
+          setTeams(response.data.teams); // Assuming teams are part of the user data
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+          if (error.response.status === 401) {
+            // Handle unauthorized access, possibly by redirecting to login
+            setIsAuthenticated(false);
+            navigate('/login');
+          }
+        }
       }
     };
 
     fetchUserData();
-  }, [setTeams]);
+  }, [setTeams, setIsAuthenticated, navigate]);
 
   // Form submit handler
   const makeTeam = (event) => {
@@ -28,7 +37,7 @@ const Account = ({ teams, setTeams, teamName, setTeamName, setIsAuthenticated })
       setTeams((previous) => ({
         ...previous, [teamName]: [] // Create a new array with the input name
       }));
-      setTeamName(""); // Clear input field after creation
+      setTeamName(''); // Clear input field after creation
     }
   };
 
@@ -72,8 +81,8 @@ const Account = ({ teams, setTeams, teamName, setTeamName, setIsAuthenticated })
 
       <button onClick={handleLogout}>Logout</button>
 
-      {console.log("teamName:", teamName)}
-      {console.log("teams:", teams)}
+      {console.log('teamName:', teamName)}
+      {console.log('teams:', teams)}
     </>
   );
 };

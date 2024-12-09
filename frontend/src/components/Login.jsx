@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import api from './api'; // imports the centralized API
+import axios from 'axios'; // Ensure axios is imported
+import api from './api'; // Import the centralized API
 
 const Login = ({ setIsAuthenticated }) => {
   const [username, setUsername] = useState('');
@@ -21,6 +22,8 @@ const Login = ({ setIsAuthenticated }) => {
 
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
+        // Set the token in Axios default headers
+        axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
         setIsAuthenticated(true); // Set authentication status
         navigate('/Account');
       } else {
