@@ -16,8 +16,8 @@ const App = () => {
   const [teams, setTeams] = useState({}); // Object holding all teams
 
   return (
-    <Router>
-      <h1>PokeKeeper</h1>
+    <>
+    <h1>PokeKeeper</h1>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/NationalDex" element={<NationalDex />} />
@@ -27,7 +27,7 @@ const App = () => {
         <Route path="/profile" element={<Profile />} /> {/* Protect this route if needed */}
         <Route path="/Account" element={<Account teamName={teamName} setTeamName={setTeamName} teams={teams} setTeams={setTeams} />} />
       </Routes>
-    </Router>
+    </>
   );
 };
 
