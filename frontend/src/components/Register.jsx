@@ -22,7 +22,7 @@ const Register = () => {
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
         alert('Registration successful, please log in.');
-        navigate('/profile');
+        navigate('/Account');
       } else {
        
         navigate('/login');
