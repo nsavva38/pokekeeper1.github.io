@@ -20,8 +20,10 @@ function createToken(id) {
 // Middleware to authenticate user
 router.use(async (req, res, next) => {
   const authHeader = req.headers.authorization;
-  const token = authHeader?.slice(7); // "Bearer <token>"
-  if (!token) return next();
+  const token = authHeader && authHeader.split(' ')[1]; // Extract the token from the Bearer token
+
+  if (!token) return next({ status: 401, message: "Access denied. No token provided." });
+
   try {
     const { id } = jwt.verify(token, JWT_SECRET);
     const user = await prisma.user.findUniqueOrThrow({ where: { id } });
@@ -31,6 +33,7 @@ router.use(async (req, res, next) => {
     next(e);
   }
 });
+
 
 // Registration endpoint
 router.post("/register", async (req, res, next) => {
@@ -81,7 +84,9 @@ router.get("/user", authenticate, async (req, res, next) => {
   try {
     const user = await prisma.user.findUniqueOrThrow({
       where: { id: req.user.id },
-      include: {
+      select: {
+        id: true,
+        username: true, // Include the username field
         teams: true, // Assuming you have a relationship setup for teams
       },
     });
@@ -90,6 +95,7 @@ router.get("/user", authenticate, async (req, res, next) => {
     next(e);
   }
 });
+
 
 
 

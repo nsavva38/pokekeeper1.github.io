@@ -17,3 +17,27 @@ Content-Type: application/json
   "username": "foo2@bar.baz",
   "password": "foobar"
 }
+
+### Register a new user
+POST http://localhost:3000/register
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "testpassword"
+}
+
+### Login the user
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "testpassword"
+}
+
+
+
+### Fetch user details (after login)
+GET http://localhost:3000/user
+# Authorization: Bearer {{token}}
