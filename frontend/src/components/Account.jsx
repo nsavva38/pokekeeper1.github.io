@@ -19,8 +19,8 @@ const Account = ({teams,setTeams,teamName,setTeamName}) => {
         <ul>
           <li><Link to="/">Home</Link></li>
           <li><Link to="/NationalDex">NationalDex</Link></li>
-          <li><Link to="/register">Register</Link></li>
-          <li><Link to="/login">Login</Link></li>
+          <li><Link to="/Register">Register</Link></li>
+          <li><Link to="/Login">Login</Link></li>
         </ul>
       </nav>
       <h2>Hello User</h2>
