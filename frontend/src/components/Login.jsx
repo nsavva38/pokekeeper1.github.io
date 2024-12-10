@@ -22,6 +22,7 @@ const Login = ({ setIsAuthenticated }) => {
 
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
+        localStorage.setItem('username', username); // Store the username
         // Set the token in Axios default headers
         axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
         setIsAuthenticated(true); // Set authentication status

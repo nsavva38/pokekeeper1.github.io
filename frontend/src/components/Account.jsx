@@ -15,7 +15,7 @@ const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
           const response = await axios.get('/user', {
             headers: { Authorization: `Bearer ${token}` }
           });
-          console.log('User Data:', response.data); // Log the user data
+          // console.log('User Data:', response.data); // Log the user data
           setUser(response.data); // Set user data
           setTeams(response.data.teams || {}); // Ensure teams is an object
         } catch (error) {
@@ -46,9 +46,12 @@ const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
   // Logout handler
   const handleLogout = () => {
     localStorage.removeItem('token'); // Remove the token from localStorage
+    localStorage.removeItem('username'); // Remove the username from localStorage
     setIsAuthenticated(false); // Update authentication state
     navigate('/login'); // Redirect to the login page
   };
+
+  const username = localStorage.getItem('username'); // Retrieve the username from localStorage
 
   if (!user) {
     return <p>Loading...</p>; // Display loading message while fetching user data
@@ -64,7 +67,7 @@ const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
           <li><Link to="/login">Login</Link></li>
         </ul>
       </nav>
-      <h2>Hello, {user.username}</h2>
+      <h2>Hello, {username || user.username}</h2>
       <p>Make a New Team</p>
       <form onSubmit={makeTeam}>
         <input
@@ -87,9 +90,9 @@ const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
 
       <button onClick={handleLogout}>Logout</button>
 
-      {console.log('teamName:', teamName)}
-      {console.log('teams:', teams)}
-      {console.log('user:', user)} // Log the user object
+      {/* {console.log('teamName:', teamName)} */}
+      {/* {console.log('teams:', teams)} */}
+      {/* {console.log('user:', user)} */}
     </>
   );
 };
