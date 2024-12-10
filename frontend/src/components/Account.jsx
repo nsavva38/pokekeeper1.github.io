@@ -105,15 +105,23 @@ const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
                 <button onClick={() => deleteTeam(team)}>Delete Team</button>
               </section>
               <section id="team-members">
-                {teams[team].map((pokemon, index) => (
-                  <section id="member" key={index}>
-                    <img src={pokemon.sprite} onClick={() => navigate(`/NationalDex/${pokemon.id}`)} alt={pokemon.name} />
-                    <p onClick={() => navigate(`/NationalDex/${pokemon.id}`)}>
-                      {pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}
-                    </p>
-                    <button onClick={() => removeFromTeam(team, index)}>Remove from Team</button>
-                  </section>
-                ))}
+
+                {teams[team].map((pokemon, index) => {
+                  return (
+                    <section id="member">
+                      <img src={pokemon.sprite} onClick={() => { navigate(`/NationalDex/${pokemon.name}`)} }/>
+                      <p onClick={() => { 
+                        navigate(`/NationalDex/${pokemon.name}`)} }
+                        >{pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}
+                      </p>
+
+                      <button
+                        onClick={() => removeFromTeam(team, index)}
+                      >Remove from Team</button>
+                    </section>
+                    )
+                  })}
+
               </section>
             </li>
           ))}
