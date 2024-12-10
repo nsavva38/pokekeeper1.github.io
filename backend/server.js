@@ -33,14 +33,19 @@ app.use(require("morgan")("dev"));
 app.use(express.json());
 app.use(bodyParser.json()); // Parse JSON bodies
 
+// Authentication router
 app.use(require("./api/auth").router);
-// app.use("/teams", require("./api/products"));
-// app.use("/pokemon", require("./api/orders"));
 
+// Teams and Pokémon routers
+app.use("/teams", require("./api/teams"));
+app.use("/pokemon", require("./api/pokemon"));
+
+// Handle 404 errors
 app.use((req, res, next) => {
   next({ status: 404, message: "Endpoint not found." });
 });
 
+// Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(err.status ?? 500);
