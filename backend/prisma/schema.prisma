@@ -32,7 +32,7 @@ model Team {
 
 model Pokemon {
   id       Int      @id @default(autoincrement())
-  name     String   @unique
+  name     String   
   ability  String
   moves    Move[]
   

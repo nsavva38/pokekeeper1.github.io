@@ -7,10 +7,9 @@ const { authenticate } = require("./auth");
 
 router.get("/", authenticate, async (req, res, next) => {
   try {
-    const teams = await prisma.reservation.findMany({
-      where: { userd: req.user.id },
-      include: { teams: true },
-    });
+    const teams = await prisma.team.findMany({
+      where: { ownerId: req.user.id },
+   });
     res.json(teams);
   } catch (e) {
     next(e);
