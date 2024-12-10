@@ -8,8 +8,18 @@ Content-Type: application/json
   "username": "foo2@bar.baz",
   "password": "foobar"
 }
-### Login
-# @name login
+
+### Register new customer
+POST {{host}}/register
+Content-Type: application/json
+
+{
+  "username": "foo@bar.baz",
+  "password": "foobar"
+}
+
+### Login for user 1
+# @name login1
 POST {{host}}/login
 Content-Type: application/json
 
@@ -18,3 +28,53 @@ Content-Type: application/json
   "password": "foobar"
 }
 
+### Login for user 2
+# @name login2
+POST {{host}}/login
+Content-Type: application/json
+
+{
+  "username": "foo@bar.baz",
+  "password": "foobar"
+}
+
+### Add new team for user 1
+@token1 = {{login1.response.body.token}}
+POST {{host}}/teams
+Authorization: Bearer {{token1}}
+Content-Type: application/json
+
+{
+  "name": "test team"
+}
+
+### Add new Pokemon to team
+POST {{host}}/pokemon
+Authorization: Bearer {{token1}}
+Content-Type: application/json
+
+{
+  "name": "Charizard",
+  "ability": "blaze",
+  "teamId": 2
+}
+
+### Delete Pokemon
+DELETE {{host}}/pokemon/39
+Authorization: Bearer {{token1}}
+Content-Type: application/json
+
+### Get teams for user 1
+GET {{host}}/teams
+Authorization: Bearer {{token1}}
+Content-Type: application/json
+
+### Get all Pokemon
+GET {{host}}/pokemon
+Authorization: Bearer {{token1}}
+Content-Type: application/json
+
+### Get specific Pokemon
+GET {{host}}/pokemon/35
+Authorization: Bearer {{token1}}
+Content-Type: application/json
