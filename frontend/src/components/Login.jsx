@@ -38,14 +38,6 @@ const Login = ({ setIsAuthenticated }) => {
 
   return (
     <>
-      <nav>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/NationalDex">NationalDex</Link></li>
-          <li><Link to="/Register">Register</Link></li>
-          <li><Link to="/Account">Account</Link></li>
-        </ul>
-      </nav>
       <form onSubmit={handleSubmit}>
         <h2>Login</h2>
         {error && <p style={{ color: 'red' }}>{error}</p>} {/* Conditionally render error message */}
