@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const NationalDex = ({ pokemon }) => {
   const navigate = useNavigate();
@@ -12,9 +12,6 @@ const NationalDex = ({ pokemon }) => {
 
   return (
     <>
-//<<<<<<< combined-with-searchBar
-//      <h2 className="page-title">National Dex</h2>
-//=======
 
       <h2>National Dex</h2>
       <nav>

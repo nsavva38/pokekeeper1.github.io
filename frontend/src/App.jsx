@@ -118,9 +118,7 @@ const App = () => {
         <Route path="/NationalDex/:name" element={<SelectedPokemon teams={teams} setTeams={setTeams}/>}/>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} /> {/* Protect this route if needed */}
         <Route path="/Account" element={<Account teamName={teamName} setTeamName={setTeamName} teams={teams} setTeams={setTeams} />} />
-
       </Routes>
     </>
   );
