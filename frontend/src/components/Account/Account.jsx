@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import styles from './Account.module.css';
 
 const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
   const [user, setUser] = useState(null); // State for storing user data
@@ -75,10 +76,18 @@ const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
   }
 
   return (
-    <>
+    <div className={styles.container}>
+      <nav className={styles.nav}>
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/NationalDex">NationalDex</Link></li>
+          <li><Link to="/register">Register</Link></li>
+          <li><Link to="/login">Login</Link></li>
+        </ul>
+      </nav>
       <h2>Hello, {username || user.username}</h2>
       <p>Make a New Team</p>
-      <form onSubmit={makeTeam}>
+      <form onSubmit={makeTeam} className={styles.form}>
         <input
           value={teamName}
           onChange={(event) => setTeamName(event.target.value)}
@@ -89,31 +98,23 @@ const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
 
       <h3>My Teams</h3>
       <section id="teams">
-        <ul>
+        <ul className={styles.teams}>
           {Object.keys(teams).map((team) => (
-            <li key={team}>
+            <li key={team} className={styles.team}>
               <section id="teamName-and-deleteButton">
                 <h3>{team}</h3>
                 <button onClick={() => deleteTeam(team)}>Delete Team</button>
               </section>
               <section id="team-members">
-
-                {teams[team].map((pokemon, index) => {
-                  return (
-                    <section id="member">
-                      <img src={pokemon.sprite} onClick={() => { navigate(`/NationalDex/${pokemon.name}`)} }/>
-                      <p onClick={() => { 
-                        navigate(`/NationalDex/${pokemon.name}`)} }
-                        >{pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}
-                      </p>
-
-                      <button
-                        onClick={() => removeFromTeam(team, index)}
-                      >Remove from Team</button>
-                    </section>
-                    )
-                  })}
-
+                {teams[team].map((pokemon, index) => (
+                  <section id="member" key={index} className={styles.member}>
+                    <img src={pokemon.sprite} onClick={() => navigate(`/NationalDex/${pokemon.name}`)} alt={pokemon.name} />
+                    <p onClick={() => navigate(`/NationalDex/${pokemon.name}`)}>
+                      {pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}
+                    </p>
+                    <button onClick={() => removeFromTeam(team, index)}>Remove from Team</button>
+                  </section>
+                ))}
               </section>
             </li>
           ))}
@@ -121,7 +122,7 @@ const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
       </section>
 
       <button onClick={handleLogout}>Logout</button>
-    </>
+    </div>
   );
 };
 
