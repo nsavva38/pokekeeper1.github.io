@@ -2,6 +2,41 @@ body {
   background-color: grey;
 }
 
+
+#navigation-and-title {
+  position: fixed;
+  top: 0;
+  width: 100%; /* Optional: If you want it to take the full width of the screen */
+  background-color: white; /* Optional: Adjust the background color as needed */
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px; /* Adjust padding for better spacing */
+  z-index: 1000; /* Optional: Ensure it's on top of other elements */
+}
+
+#navigation-and-title nav {
+  display: flex;
+  gap: 10px;
+}
+
+#navigation-and-title > h1 {
+  margin: 0; /* Remove default margin */
+  padding: 0;
+  text-align: center;
+  flex-grow: 1;
+  max-width: 80%; /* Optional: Limit the width of the h1 for better control */
+  margin: 0 10%; /* Adjust the left and right margin to move the h1 left */
+  margin-left: 34.5%;
+  /* Additional CSS for better centering and alignment */
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: center; */
+}
+
+.page-title {
+  margin-top: 100px;
+}
+
 #pokemon151 {
   display: flex;
   flex-wrap: wrap;
@@ -24,3 +59,45 @@ body {
 #selected-pokemon > .poke-images {
   flex-direction: row;
 }
+
+#selected-pokemon > .poke-images img {
+  cursor: default;
+}
+
+#team-members {
+  display: flex;
+  flex-direction: row;
+}
+
+#member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+#teamName-and-deleteButton {
+  display: flex;
+  flex-direction: row;
+}
+
+#teamName-and-deleteButton > h3 {
+margin-right: 10px;
+}
+
+#teamName-and-deleteButton > button {
+  padding: 0px 0px;
+  height: 40px;
+}
+
+button, a, img, select {
+  cursor: pointer;
+}
+
+nav {
+  padding: 10px;
+}
+
+/* nav a {
+  margin-right: 5px;
+} */
