@@ -41,8 +41,16 @@ const SelectedPokemon = ({ teams, setTeams }) => {
   }, [id]);
 
   const addToTeam = () => {
+    console.log(selectedTeam);
+    console.log(teams);
+    console.log(teams[selectedTeam]);
     if (!selectedTeam) {
       alert("Please select a team!");
+      return;
+    }
+
+    if(teams[selectedTeam].length >= 6) {
+      alert("This team is full");
       return;
     }
 
@@ -51,18 +59,22 @@ const SelectedPokemon = ({ teams, setTeams }) => {
       [selectedTeam]: [...(prevTeams[selectedTeam] || []), pokemonDetails],
     }));
 
-    alert(`${pokemonDetails.name} added to ${selectedTeam}!`);
+    alert(`${pokemonDetails.name[0].toUpperCase() + pokemonDetails.name.slice(1)} added to ${selectedTeam}!`);
   };
 
-  //------------------------------------RETURN-----------------------------------//
   if (!pokemonDetails) {
     return <p>Loading...</p>;
   }
 
+
+  //------------------------------------RETURN-----------------------------------//
+
+  
+
   return (
     <section id="selected-pokemon">
       <div className="poke-images">
-        <img src={pokemonDetails.sprite} alt={pokemonDetails.name} />
+        <img src={pokemonDetails.sprite} alt={pokemonDetails.name} className="page-title"/>
         <img src={pokemonDetails.shinySprite} alt={`${pokemonDetails.name} shiny`} />
       </div>
       <h2>{pokemonDetails.name[0].toUpperCase() + pokemonDetails.name.slice(1)}</h2>

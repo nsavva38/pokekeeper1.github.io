@@ -5,6 +5,7 @@ import axios from 'axios';
 const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
   const [user, setUser] = useState(null); // State for storing user data
   const [teams, setTeams] = useState({}); // Set default value for teams
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,7 +16,6 @@ const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
           const response = await axios.get('/user', {
             headers: { Authorization: `Bearer ${token}` }
           });
-          // console.log('User Data:', response.data); // Log the user data
           setUser(response.data); // Set user data
           setTeams(response.data.teams || {}); // Ensure teams is an object
         } catch (error) {
@@ -41,6 +41,23 @@ const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
       }));
       setTeamName(''); // Clear input field after creation
     }
+  };
+
+  // Remove a Pokemon from a team
+  const removeFromTeam = (team, index) => {
+    setTeams((prevTeams) => ({
+      ...prevTeams,
+      [team]: prevTeams[team].filter((_, i) => i !== index),
+    }));
+  };
+
+  // Delete a team
+  const deleteTeam = (team) => {
+    setTeams((prevTeams) => {
+      const updatedTeams = { ...prevTeams };
+      delete updatedTeams[team];
+      return updatedTeams;
+    });
   };
 
   // Logout handler
@@ -79,20 +96,31 @@ const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
       </form>
 
       <h3>My Teams</h3>
-      <ol>
-        {Object.keys(teams).map((team) => (
-          <li key={team}>
-            <strong>{team}</strong>: {JSON.stringify(teams[team])}
-            {team}
-          </li>
-        ))}
-      </ol>
+      <section id="teams">
+        <ul>
+          {Object.keys(teams).map((team) => (
+            <li key={team}>
+              <section id="teamName-and-deleteButton">
+                <h3>{team}</h3>
+                <button onClick={() => deleteTeam(team)}>Delete Team</button>
+              </section>
+              <section id="team-members">
+                {teams[team].map((pokemon, index) => (
+                  <section id="member" key={index}>
+                    <img src={pokemon.sprite} onClick={() => navigate(`/NationalDex/${pokemon.id}`)} alt={pokemon.name} />
+                    <p onClick={() => navigate(`/NationalDex/${pokemon.id}`)}>
+                      {pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}
+                    </p>
+                    <button onClick={() => removeFromTeam(team, index)}>Remove from Team</button>
+                  </section>
+                ))}
+              </section>
+            </li>
+          ))}
+        </ul>
+      </section>
 
       <button onClick={handleLogout}>Logout</button>
-
-      {/* {console.log('teamName:', teamName)} */}
-      {/* {console.log('teams:', teams)} */}
-      {/* {console.log('user:', user)} */}
     </>
   );
 };
