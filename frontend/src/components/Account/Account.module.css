@@ -1,0 +1,124 @@
+/* AccountDark.module.css */
+.container {
+  padding: 20px;
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.nav {
+  margin-bottom: 20px;
+}
+
+.nav ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.nav li {
+  margin-right: 20px;
+}
+
+.nav a {
+  color: #bb86fc;
+  text-decoration: none;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+.form {
+  margin-bottom: 20px;
+}
+
+.form input {
+  background-color: #333;
+  border: 1px solid #444;
+  color: #e0e0e0;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 4px;
+}
+
+.form button {
+  background-color: #bb86fc;
+  color: #121212;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form button:hover {
+  background-color: #9f6fe0;
+}
+
+.teams {
+  list-style: none;
+  padding: 0;
+}
+
+.team {
+  margin-bottom: 10px;
+}
+
+.team h3 {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.team button {
+  background-color: #cf6679;
+  color: #121212;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.team button:hover {
+  background-color: #b25463;
+}
+
+.member {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.member img {
+  margin-right: 10px;
+  border-radius: 4px;
+}
+
+.member p {
+  margin-right: 10px;
+}
+
+.member button {
+  background-color: #cf6679;
+  color: #121212;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.member button:hover {
+  background-color: #b25463;
+}
+
+button {
+  background-color: #bb86fc;
+  color: #121212;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #9f6fe0;
+}
