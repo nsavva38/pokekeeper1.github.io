@@ -1,8 +1,36 @@
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-const Account = ({teams,setTeams,teamName,setTeamName}) => {
+const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
+  const [user, setUser] = useState(null); // State for storing user data
+  const [teams, setTeams] = useState({}); // Set default value for teams
+
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          const response = await axios.get('/user', {
+            headers: { Authorization: `Bearer ${token}` }
+          });
+          setUser(response.data); // Set user data
+          setTeams(response.data.teams || {}); // Ensure teams is an object
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+          if (error.response?.status === 401) {
+            // Handle unauthorized access, possibly by redirecting to login
+            setIsAuthenticated(false);
+            navigate('/login');
+          }
+        }
+      }
+    };
+
+    fetchUserData();
+  }, [setIsAuthenticated, navigate]);
 
   // Form submit handler
   const makeTeam = (event) => {
@@ -11,33 +39,52 @@ const Account = ({teams,setTeams,teamName,setTeamName}) => {
       setTeams((previous) => ({
         ...previous, [teamName]: [] // Create a new array with the input name
       }));
-      setTeamName(""); // Clear input field after creation
+      setTeamName(''); // Clear input field after creation
     }
   };
 
-
+  // Remove a Pokemon from a team
   const removeFromTeam = (team, index) => {
     setTeams((prevTeams) => ({
       ...prevTeams,
       [team]: prevTeams[team].filter((_, i) => i !== index),
     }));
-  }
+  };
 
+  // Delete a team
   const deleteTeam = (team) => {
     setTeams((prevTeams) => {
       const updatedTeams = { ...prevTeams };
       delete updatedTeams[team];
       return updatedTeams;
-    }) 
+    });
+  };
+
+  // Logout handler
+  const handleLogout = () => {
+    localStorage.removeItem('token'); // Remove the token from localStorage
+    localStorage.removeItem('username'); // Remove the username from localStorage
+    setIsAuthenticated(false); // Update authentication state
+    navigate('/login'); // Redirect to the login page
+  };
+
+  const username = localStorage.getItem('username'); // Retrieve the username from localStorage
+
+  if (!user) {
+    return <p>Loading...</p>; // Display loading message while fetching user data
   }
-
-
-  //------------------------------------RETURN-----------------------------------//
-
 
   return (
     <>
-      <h2 className="page-title">Hello User</h2>
+      <nav>
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/NationalDex">NationalDex</Link></li>
+          <li><Link to="/register">Register</Link></li>
+          <li><Link to="/login">Login</Link></li>
+        </ul>
+      </nav>
+      <h2>Hello, {username || user.username}</h2>
       <p>Make a New Team</p>
       <form onSubmit={makeTeam}>
         <input
@@ -50,15 +97,15 @@ const Account = ({teams,setTeams,teamName,setTeamName}) => {
 
       <h3>My Teams</h3>
       <section id="teams">
-      <ul>
-        {Object.keys(teams).map((team) => {
-          return (
+        <ul>
+          {Object.keys(teams).map((team) => (
             <li key={team}>
               <section id="teamName-and-deleteButton">
                 <h3>{team}</h3>
                 <button onClick={() => deleteTeam(team)}>Delete Team</button>
               </section>
               <section id="team-members">
+
                 {teams[team].map((pokemon, index) => {
                   return (
                     <section id="member">
@@ -74,12 +121,14 @@ const Account = ({teams,setTeams,teamName,setTeamName}) => {
                     </section>
                     )
                   })}
+
               </section>
             </li>
-          )
-        })}
-      </ul>
+          ))}
+        </ul>
       </section>
+
+      <button onClick={handleLogout}>Logout</button>
     </>
   );
 };

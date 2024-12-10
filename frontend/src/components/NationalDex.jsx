@@ -12,7 +12,19 @@ const NationalDex = ({ pokemon }) => {
 
   return (
     <>
-      <h2 className="page-title">National Dex</h2>
+//<<<<<<< combined-with-searchBar
+//      <h2 className="page-title">National Dex</h2>
+//=======
+
+      <h2>National Dex</h2>
+      <nav>
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/register">Register</Link></li>
+          <li><Link to="/login">Login</Link></li>
+          <li><Link to="/Account">Account</Link></li>
+        </ul>
+      </nav>
 
       <section id="pokemon151">
         {
