@@ -1,42 +1,13 @@
 import { useEffect, useState } from "react"
-import { useNavigate,Link } from "react-router-dom";
+
+import { useNavigate, Link } from "react-router-dom";
+
 
 const NationalDex = () => {
   const navigate = useNavigate();
   const [pokemon, setPokemon] = useState([]);
 
-  useEffect(() => {
-
-    const getPokemon = async() => {
-      const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=151`);
-      const responseJSON = await response.json();
-      const pokemon151 = responseJSON.results;
-
-
-      const pokeData = await Promise.all(
-        pokemon151.map(async (singlePokemon) => {
-          const response = await fetch(singlePokemon.url);
-          const pokeDetail = await response.json();
-
-
-          
-          return {
-            name: singlePokemon.name,
-            sprite: pokeDetail.sprites.front_default,
-            id: pokeDetail.id,
-            type: pokeDetail.types,
-          };
-        })
-      );
-
-      console.log(`pokeData: `, pokeData);
-      setPokemon(pokeData);
-
-    }
-
-
-    getPokemon();
-  }, [])
+  
 
 
 
