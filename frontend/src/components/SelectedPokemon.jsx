@@ -92,22 +92,26 @@ const SelectedPokemon = ({ teams, setTeams }) => {
         <img src={pokemonDetails.sprite} alt={pokemonDetails.name} className="page-title"/>
         {/* <img src={pokemonDetails.shinySprite} alt={`${pokemonDetails.name} shiny`} /> */}
       </div>
-      <h2>{pokemonDetails.name[0].toUpperCase() + pokemonDetails.name.slice(1)}</h2>
-      <p>Type: {pokemonDetails.type.toUpperCase()}</p>
-      <p>PokéDex Entry: {pokemonDetails.description}</p>
+      <section id="selected-pokemon-details">
+        <h2>{pokemonDetails.name[0].toUpperCase() + pokemonDetails.name.slice(1)}</h2>
+        <p>Type: {pokemonDetails.type.toUpperCase()}</p>
+        <p>PokéDex Entry: <div id="poke-entry">{pokemonDetails.description}</div></p>
 
-      {/* Team Selection Dropdown */}
-      <select value={selectedTeam} onChange={(event) => setSelectedTeam(event.target.value)}>
-        <option value="">Select a Team</option>
-        {Object.keys(teams).map((teamName) => (
-          <option key={teamName} value={teamName}>
-            {teamName}
-          </option>
-        ))}
-      </select>
+        {/* Team Selection Dropdown */}
+        <section id="selected-pokemon-interaction">
+          <select value={selectedTeam} onChange={(event) => setSelectedTeam(event.target.value)}>
+            <option value="">Select a Team</option>
+            {Object.keys(teams).map((teamName) => (
+              <option key={teamName} value={teamName}>
+                {teamName}
+              </option>
+            ))}
+          </select>
 
-      <button onClick={addToTeam}>Add to Team</button>
-      <button onClick={() => navigate(`/NationalDex`)}>Back to National Dex</button>
+          <button onClick={addToTeam}>Add to Team</button>
+          <button onClick={() => navigate(`/NationalDex`)}>Back to National Dex</button>
+        </section>
+      </section>
     </section>
   );
 };

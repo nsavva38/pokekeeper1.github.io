@@ -1,0 +1,88 @@
+/* Home.module.css */
+.header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.nav li {
+  margin: 0 15px;
+}
+
+.nav a {
+  color: #bb86fc;
+  text-decoration: none;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+.hero {
+  background-color: #121212;
+  color: #e0e0e0;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3em;
+}
+
+.hero p {
+  font-size: 1.5em;
+}
+
+.hero button {
+  background-color: #bb86fc;
+  color: #121212;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.hero button:hover {
+  background-color: #9f6fe0;
+}
+
+.features {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.feature {
+  width: 30%;
+  padding: 20px;
+  text-align: center;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.footer a {
+  color: #bb86fc;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}

@@ -3,13 +3,8 @@ import { useEffect, useState } from "react"
 import { useNavigate, Link } from "react-router-dom";
 
 
-const NationalDex = () => {
+const NationalDex = ({ pokemon }) => {
   const navigate = useNavigate();
-  const [pokemon, setPokemon] = useState([]);
-
-  
-
-
 
 
 
@@ -17,6 +12,7 @@ const NationalDex = () => {
     <>
 
       <h2>National Dex</h2>
+
 
       <section id="pokemon151">
         {
@@ -27,7 +23,7 @@ const NationalDex = () => {
               return (
                 <div key={singlePokemon.name}>
                   <img src={singlePokemon.sprite} alt={singlePokemon.name}
-                  onClick={() => { navigate(`/NationalDex/${singlePokemon.id}`)} } />
+                    onClick={() => { navigate(`/NationalDex/${singlePokemon.name}`)} } />
                   <h3>{singlePokemon.name[0].toUpperCase() + singlePokemon.name.slice(1)}</h3>
                 </div>
               )
