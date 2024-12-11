@@ -9,15 +9,15 @@ import Home from "./components/Home.jsx";
 import Account from "./components/Account/Account.jsx";
 
 const App = () => {
-  
   const [teamName, setTeamName] = useState(""); 
-  const [teams, setTeams] = useState({}); 
+  const [teams, setTeams] = useState({});
   const [isAuthenticated, setIsAuthenticated] = useState(false); 
   const [searchedPokemon, setSearchedPokemon] = useState(""); 
   const [pokemon, setPokemon] = useState([]); 
 
   const navigate = useNavigate();
 
+ 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -25,6 +25,7 @@ const App = () => {
     }
   }, []);
 
+ 
   useEffect(() => {
     const getPokemon = async () => {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=151`);
@@ -94,8 +95,8 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/NationalDex" element={<NationalDex pokemon={pokemon} />} />
         <Route path="/NationalDex/:name" element={<SelectedPokemon teams={teams} setTeams={setTeams} />} />
-        <Route path="/register" element={<Register setIsAuthenticated={setIsAuthenticated} />} />
-        <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+        <Route path="/Register" element={<Register setIsAuthenticated={setIsAuthenticated} />} />
+        <Route path="/Login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
         <Route
           path="/Account"
           element={
