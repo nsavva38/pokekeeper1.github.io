@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios'; // Ensure axios is imported
-import api from './api'; // imports the centralized API
+import api from '../api'; // imports the centralized API
 
 const Register = ({ setIsAuthenticated }) => {
   const [username, setUsername] = useState('');
