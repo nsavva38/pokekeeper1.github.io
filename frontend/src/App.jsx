@@ -5,7 +5,7 @@ import NationalDex from "./components/NationalDex.jsx";
 import SelectedPokemon from "./components/SelectedPokemon.jsx";
 import Register from "./components/Register.jsx";
 import Login from "./components/Login.jsx";
-import Home from "./components/Home.jsx";
+import Home from "./components/Home/Home.jsx";
 import Account from "./components/Account/Account.jsx";
 
 const App = () => {
