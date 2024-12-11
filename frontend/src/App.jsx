@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 import NationalDex from "./components/NationalDex.jsx";
 import SelectedPokemon from "./components/SelectedPokemon.jsx";
-import Register from "./components/Register.jsx";
+import Register from "./components/Register/Register.jsx";
 import Login from "./components/Login/Login.jsx";
 import Home from "./components/Home/Home.jsx";
 import Account from "./components/Account/Account.jsx";

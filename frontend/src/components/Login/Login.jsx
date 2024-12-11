@@ -37,7 +37,7 @@ const Login = ({ setIsAuthenticated }) => {
   };
 
   return (
-    <>
+    <div className={styles.container}>
       <form onSubmit={handleSubmit} className={styles.form}>
         <h2>Login</h2>
         {error && <p className={styles.error}>{error}</p>}
@@ -57,7 +57,7 @@ const Login = ({ setIsAuthenticated }) => {
         />
         <button type="submit" className={styles.button}>Login</button>
       </form>
-    </>
+    </div>
   );
 };
 
