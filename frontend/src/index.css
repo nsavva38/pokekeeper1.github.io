@@ -55,9 +55,9 @@ body {
   margin: 10px auto;
   font-size: 20px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  background-color: rgb(48, 48, 48); /* Set the background color to white */
+  background-color: rgb(48, 48, 48);
   max-width: 1000px;
-  height: 1040px; /* Adjust this value to increase the bottom portion height */
+  height: 1040px;
   border: 10px solid black;
 }
 
@@ -94,7 +94,7 @@ body {
 }
 
 #selected-pokemon-details h2 {
-  margin-top: -20px; /* Adjust the number as needed to move the h2 higher */
+  margin-top: -20px;
 }
 
 
@@ -108,7 +108,7 @@ body {
   background-color: rgb(48, 48, 48);
   width: 1000px;
   height: 300px;
-  padding: 50px 0; /* Adjust the padding values to move the content lower */
+  padding: 50px 0;
   padding-top: 50px;
 }
 
