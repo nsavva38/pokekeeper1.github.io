@@ -90,7 +90,6 @@ const SelectedPokemon = ({ teams, setTeams }) => {
     <section id="selected-pokemon">
       <div className="poke-images">
         <img src={pokemonDetails.sprite} alt={pokemonDetails.name} className="page-title"/>
-        {/* <img src={pokemonDetails.shinySprite} alt={`${pokemonDetails.name} shiny`} /> */}
       </div>
       <section id="selected-pokemon-details">
         <h2>{pokemonDetails.name[0].toUpperCase() + pokemonDetails.name.slice(1)}</h2>

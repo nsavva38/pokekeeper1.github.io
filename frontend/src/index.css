@@ -74,8 +74,8 @@ body {
   flex-direction: row;
   background-color: black;
   display: inline-block;
-  width: 10000px;
-  height: 350px;
+  width: 5000px;
+  height: 390px;
   text-align: center;
 }
 
@@ -85,16 +85,18 @@ body {
 }
 
 #selected-pokemon-details {
-  height: 225px;
-  width: 600px;
+  height: 200px;
+  width: 400px;
   padding: 50px;
-  padding-bottom: 75px;
-  background-color: white;
+  padding-bottom: 3px;
+  color: white;
+  background-color: black;
   border: 10px solid black
 }
 
 #selected-pokemon-details h2 {
   margin-top: -20px;
+  color: white;
 }
 
 
@@ -105,7 +107,7 @@ body {
   align-items: center;
   justify-content: center;
   margin-top: 20px;
-  background-color: rgb(48, 48, 48);
+  /* background-color: rgb(48, 48, 48); */
   width: 1000px;
   height: 300px;
   padding: 50px 0;
