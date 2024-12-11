@@ -96,6 +96,7 @@ const SelectedPokemon = ({ teams, setTeams }) => {
         <h2>{pokemonDetails.name[0].toUpperCase() + pokemonDetails.name.slice(1)}</h2>
         <p>Type: {pokemonDetails.type.toUpperCase()}</p>
         <p>PokéDex Entry: <div id="poke-entry">{pokemonDetails.description}</div></p>
+      </section>
 
         {/* Team Selection Dropdown */}
         <section id="selected-pokemon-interaction">
@@ -110,7 +111,7 @@ const SelectedPokemon = ({ teams, setTeams }) => {
 
           <button onClick={addToTeam}>Add to Team</button>
           <button onClick={() => navigate(`/NationalDex`)}>Back to National Dex</button>
-        </section>
+
       </section>
     </section>
   );
