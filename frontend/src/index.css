@@ -54,15 +54,73 @@ body {
   flex-direction: column;
   align-items: center;
   margin: 10px;
+  font-size: 20px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#poke-entry {
+  font-family: Didot, serif;
+}
+
+#selected-pokemon h2 {
+  text-align: center; /* Center the text within the h2 element */
 }
 
 #selected-pokemon > .poke-images {
   flex-direction: row;
+  background-color: black;
+  display: inline-block;
+  width: 10000px;
+  height: 350px;
+  text-align: center;
 }
 
 #selected-pokemon > .poke-images img {
   cursor: default;
+  width: 200px;
 }
+
+
+
+#selected-pokemon-interaction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Center the items horizontally */
+  margin-top: 20px; /* Optional: Adjust this to space from the top if needed */
+}
+
+#selected-pokemon-interaction > select {
+  margin: 10px 0; /* Optional: Adjust spacing around the dropdown */
+  padding: 8px; /* Optional: Adjust padding for better appearance */
+  font-size: 14px; /* Optional: Adjust the font size */
+  text-align: center; /* Ensure the text is centered in the dropdown */
+}
+
+#selected-pokemon-interaction > button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Vertically center the text */
+  background-image: url('./images/pokeball3.png');
+  background-color: transparent;
+  background-size: cover; /* Ensure the image covers the button */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  background-position: center; /* Center the image in the button */
+  border: none; /* Remove the default button border */
+  width: 75px; /* Set the button width to match your image or desired size */
+  height: 75px; /* Set the button height to match your image or desired size */
+  padding: 0; /* Ensure no padding interferes with the image display */
+  cursor: pointer; /* Keeps it clear that this is clickable */
+  margin-top: 10px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px black;
+  text-align: center; /* Center the text within the button */
+}
+
+
 
 #team-members {
   display: flex;
@@ -93,6 +151,7 @@ margin-right: 10px;
 button, a, img, select {
   cursor: pointer;
 }
+
 
 nav {
   padding: 10px;
