@@ -39,6 +39,7 @@ body {
 #pokemon151 {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 #pokemon151 > div {
@@ -46,6 +47,19 @@ body {
   flex-direction: column;
   align-items: center;
   margin: 10px;
+  background-image: url('./images/pokeball3.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 150px;
+  height: 150px;
+  padding: 10px;
+  position: relative;
+}
+
+
+#pokemon151 > div > h3 {
+  color: white;
 }
 
 #selected-pokemon {
