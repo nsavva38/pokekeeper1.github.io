@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import styles from './Account.module.css';
+import api from '../api';
 
 const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
-  const [user, setUser] = useState(null); // State for storing user data
-  const [teams, setTeams] = useState({}); // Set default value for teams
+  const [user, setUser] = useState(null); 
+  const [teams, setTeams] = useState({}); 
 
   const navigate = useNavigate();
 
@@ -13,15 +14,15 @@ const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
       const token = localStorage.getItem('token');
       if (token) {
         try {
-          const response = await axios.get('/user', {
+          const response = await api.get('/user', {
             headers: { Authorization: `Bearer ${token}` }
           });
-          setUser(response.data); // Set user data
-          setTeams(response.data.teams || {}); // Ensure teams is an object
+          setUser(response.data); 
+          setTeams(response.data.teams || {}); 
         } catch (error) {
           console.error('Error fetching user data:', error);
           if (error.response?.status === 401) {
-            // Handle unauthorized access, possibly by redirecting to login
+            
             setIsAuthenticated(false);
             navigate('/login');
           }
@@ -32,18 +33,18 @@ const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
     fetchUserData();
   }, [setIsAuthenticated, navigate]);
 
-  // Form submit handler
+  
   const makeTeam = (event) => {
     event.preventDefault();
     if (teamName.trim()) {
       setTeams((previous) => ({
-        ...previous, [teamName]: [] // Create a new array with the input name
+        ...previous, [teamName]: [] 
       }));
-      setTeamName(''); // Clear input field after creation
+      setTeamName(''); 
     }
   };
 
-  // Remove a Pokemon from a team
+  
   const removeFromTeam = (team, index) => {
     setTeams((prevTeams) => ({
       ...prevTeams,
@@ -51,7 +52,7 @@ const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
     }));
   };
 
-  // Delete a team
+  
   const deleteTeam = (team) => {
     setTeams((prevTeams) => {
       const updatedTeams = { ...prevTeams };
@@ -60,33 +61,24 @@ const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
     });
   };
 
-  // Logout handler
+  
   const handleLogout = () => {
-    localStorage.removeItem('token'); // Remove the token from localStorage
-    localStorage.removeItem('username'); // Remove the username from localStorage
-    setIsAuthenticated(false); // Update authentication state
-    navigate('/login'); // Redirect to the login page
+    localStorage.removeItem('token'); 
+    localStorage.removeItem('username'); 
+    setIsAuthenticated(false); 
+    navigate('/login');
   };
 
-  const username = localStorage.getItem('username'); // Retrieve the username from localStorage
-
+  const username = localStorage.getItem('username'); 
   if (!user) {
-    return <p>Loading...</p>; // Display loading message while fetching user data
+    return <p>Loading...</p>; 
   }
 
   return (
-    <>
-      <nav>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/NationalDex">NationalDex</Link></li>
-          <li><Link to="/register">Register</Link></li>
-          <li><Link to="/login">Login</Link></li>
-        </ul>
-      </nav>
+    <div className={styles.container}>
       <h2>Hello, {username || user.username}</h2>
       <p>Make a New Team</p>
-      <form onSubmit={makeTeam}>
+      <form onSubmit={makeTeam} className={styles.form}>
         <input
           value={teamName}
           onChange={(event) => setTeamName(event.target.value)}
@@ -97,18 +89,18 @@ const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
 
       <h3>My Teams</h3>
       <section id="teams">
-        <ul>
+        <ul className={styles.teams}>
           {Object.keys(teams).map((team) => (
-            <li key={team}>
+            <li key={team} className={styles.team}>
               <section id="teamName-and-deleteButton">
                 <h3>{team}</h3>
                 <button onClick={() => deleteTeam(team)}>Delete Team</button>
               </section>
               <section id="team-members">
                 {teams[team].map((pokemon, index) => (
-                  <section id="member" key={index}>
-                    <img src={pokemon.sprite} onClick={() => navigate(`/NationalDex/${pokemon.id}`)} alt={pokemon.name} />
-                    <p onClick={() => navigate(`/NationalDex/${pokemon.id}`)}>
+                  <section id="member" key={index} className={styles.member}>
+                    <img src={pokemon.sprite} onClick={() => navigate(`/NationalDex/${pokemon.name}`)} alt={pokemon.name} />
+                    <p onClick={() => navigate(`/NationalDex/${pokemon.name}`)}>
                       {pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}
                     </p>
                     <button onClick={() => removeFromTeam(team, index)}>Remove from Team</button>
@@ -121,7 +113,7 @@ const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
       </section>
 
       <button onClick={handleLogout}>Logout</button>
-    </>
+    </div>
   );
 };
 
