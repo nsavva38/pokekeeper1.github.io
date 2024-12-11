@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import styles from './Account.module.css';
+import api from '../api';
 
 const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
   const [user, setUser] = useState(null); // State for storing user data
@@ -14,7 +14,7 @@ const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
       const token = localStorage.getItem('token');
       if (token) {
         try {
-          const response = await axios.get('/user', {
+          const response = await api.get('/user', {
             headers: { Authorization: `Bearer ${token}` }
           });
           setUser(response.data); // Set user data
