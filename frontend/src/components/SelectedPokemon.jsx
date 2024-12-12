@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import api from './api'; 
 
-const SelectedPokemon = ({ teams, setTeams }) => {
+const SelectedPokemon = ({ teams = [], setTeams }) => {
   const navigate = useNavigate();
   const [pokemonDetails, setPokemonDetails] = useState(null);
   const [selectedTeam, setSelectedTeam] = useState(""); 
@@ -13,9 +14,7 @@ const SelectedPokemon = ({ teams, setTeams }) => {
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}/`);
         const singlePokemon = await response.json();
         
-        const abilitiesArray = singlePokemon.abilities;
-        console.log(`abilitiesArray:`, abilitiesArray);
-        const commonAbility = singlePokemon.abilities[0].ability.name
+        const commonAbility = singlePokemon.abilities[0].ability.name;
 
         const speciesResponse = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${name}/`);
         const speciesInfo = await speciesResponse.json();
@@ -45,26 +44,32 @@ const SelectedPokemon = ({ teams, setTeams }) => {
     getSinglePokemon();
   }, [name]);
 
+  // Fetch the teams owned by the logged-in user
+  useEffect(() => {
+    const fetchUserTeams = async () => {
+      try {
+        const response = await api.get('/teams'); // Using the api instance from api.js
+        setTeams(response.data); // Assuming response.data contains an array of teams
+      } catch (error) {
+        console.error("Error fetching user teams:", error);
+      }
+    };
+
+    fetchUserTeams();
+  }, [setTeams]);
+
   const addToTeam = () => {
-    console.log(selectedTeam);
-    console.log(teams);
-    console.log(teams[selectedTeam]);
     if (!selectedTeam) {
       alert("Please select a team!");
       return;
     }
 
-    if(teams[selectedTeam].length >= 6) {
+    if (teams[selectedTeam].length >= 6) {
       alert("This team is full");
       return;
     }
 
-
-
-
     // connect to backend here with POST request to our API
-
-
 
     setTeams((prevTeams) => ({
       ...prevTeams,
@@ -78,15 +83,10 @@ const SelectedPokemon = ({ teams, setTeams }) => {
     return <p>Loading...</p>;
   }
 
-
-
-  
-
   return (
     <section id="selected-pokemon">
       <div className="poke-images">
-        <img src={pokemonDetails.sprite} alt={pokemonDetails.name} className="page-title"/>
-        {/* <img src={pokemonDetails.shinySprite} alt={`${pokemonDetails.name} shiny`} /> */}
+        <img src={pokemonDetails.sprite} alt={pokemonDetails.name} className="page-title" />
       </div>
       <section id="selected-pokemon-details">
         <h2>{pokemonDetails.name[0].toUpperCase() + pokemonDetails.name.slice(1)}</h2>
@@ -96,9 +96,9 @@ const SelectedPokemon = ({ teams, setTeams }) => {
         <section id="selected-pokemon-interaction">
           <select value={selectedTeam} onChange={(event) => setSelectedTeam(event.target.value)}>
             <option value="">Select a Team</option>
-            {Object.keys(teams).map((teamName) => (
-              <option key={teamName} value={teamName}>
-                {teamName}
+            {Array.isArray(teams) && teams.map((team) => (
+              <option key={team.id} value={team.name}>
+                {team.name}
               </option>
             ))}
           </select>
