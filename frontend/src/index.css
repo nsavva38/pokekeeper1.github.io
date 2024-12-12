@@ -80,6 +80,7 @@ body {
   font-family: Didot, serif;
 }
 
+
 #selected-pokemon h2 {
   color: black;
   text-align: center;
@@ -105,14 +106,18 @@ body {
 }
 
 #selected-pokemon-details img {
-  width: 250px;
+  cursor: default;
+  width: 150px;
 }
 
+
+
 #selected-pokemon-details {
-  height: 500px;
+  margin-top: 100px;
+  height: 300px;
   width: 400px;
   padding: 50px;
-  padding-bottom: 3px;
+  padding-bottom: 80px;
   color: white;
   background-color: black;
   border: 10px solid black;
