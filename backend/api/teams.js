@@ -7,16 +7,9 @@ const { authenticate } = require("./auth");
 
 router.get("/", authenticate, async (req, res, next) => {
   try {
-<<<<<<< HEAD
-    const teams = await prisma.reservation.findMany({
-      where: { userd: req.user.id },
-      include: { teams: true },
-    });
-=======
     const teams = await prisma.team.findMany({
       where: { ownerId: req.user.id },
    });
->>>>>>> 29de420c758534c7889b482e9c66ee4f558cd733
     res.json(teams);
   } catch (e) {
     next(e);
@@ -24,20 +17,6 @@ router.get("/", authenticate, async (req, res, next) => {
 });
 
 router.post("/", authenticate, async (req, res, next) => {
-<<<<<<< HEAD
-  const { name, pokemon } = req.body;
-  try {
-    const pokemon = pokemon.map((id) => ({ id }));
-    const team = await prisma.playlist.create({
-      data: {
-        name,
-        pokemon,
-        userId : req.user.id,
-        tracks: { connect : tracks }
-      },
-    });
-    res.status(201).json(playlist);
-=======
   const { name } = req.body;
   try {
     //const pokemon = pokemon.map((id) => ({ id }));
@@ -50,7 +29,6 @@ router.post("/", authenticate, async (req, res, next) => {
       },
     });
     res.status(201).json(team);
->>>>>>> 29de420c758534c7889b482e9c66ee4f558cd733
   } catch (e) {
     next(e);
   }
