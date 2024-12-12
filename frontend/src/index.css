@@ -32,13 +32,14 @@ body {
 
 }
 
-.page-title {
+/* .page-title {
   margin-top: 100px;
-}
+} */
 
 #pokemon151 {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 #pokemon151 > div {
@@ -46,6 +47,19 @@ body {
   flex-direction: column;
   align-items: center;
   margin: 10px;
+  background-image: url('./images/pokeball3.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 120px;
+  height: 150px;
+  padding: 10px;
+  position: relative;
+}
+
+
+#pokemon151 > div > h3 {
+  color: white;
 }
 
 #selected-pokemon {
@@ -53,6 +67,7 @@ body {
   flex-direction: column;
   align-items: center;
   margin: 10px auto;
+  margin-bottom: -10px;
   font-size: 20px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   background-color: rgb(48, 48, 48);
@@ -70,35 +85,50 @@ body {
   text-align: center;
 }
 
-#selected-pokemon > .poke-images {
+/* #selected-pokemon > .poke-images {
   flex-direction: row;
   background-color: black;
   display: inline-block;
-  width: 5000px;
+  width: 500px;
   height: 390px;
+  text-align: center;
+} */
+
+#selected-pokemon-details > .poke-images img {
+  display: flex;
+  flex-direction: column;
+  cursor: default;
+  width: 200px;
+  height: 200px;
+  margin-right: -100px;
   text-align: center;
 }
 
-#selected-pokemon > .poke-images img {
-  cursor: default;
-  width: 200px;
+#selected-pokemon-details img {
+  width: 250px;
 }
 
 #selected-pokemon-details {
-  height: 200px;
+  height: 500px;
   width: 400px;
   padding: 50px;
   padding-bottom: 3px;
   color: white;
   background-color: black;
-  border: 10px solid black
+  border: 10px solid black;
+  text-align: center;
 }
 
 #selected-pokemon-details h2 {
-  margin-top: -20px;
+  margin-top: 30px;
   color: white;
 }
 
+#selected-pokemon-details > .poke-images {
+  margin-top: -10px;
+  width: 100px;
+  text-align: center;
+}
 
 
 #selected-pokemon-interaction {

@@ -88,10 +88,10 @@ const SelectedPokemon = ({ teams, setTeams }) => {
 
   return (
     <section id="selected-pokemon">
-      <div className="poke-images">
-        <img src={pokemonDetails.sprite} alt={pokemonDetails.name} className="page-title"/>
-      </div>
       <section id="selected-pokemon-details">
+      {/* <div className="poke-images">
+      </div> */}
+        <img src={pokemonDetails.sprite} alt={pokemonDetails.name}/>
         <h2>{pokemonDetails.name[0].toUpperCase() + pokemonDetails.name.slice(1)}</h2>
         <p>Type: {pokemonDetails.type.toUpperCase()}</p>
         <p>PokéDex Entry: <div id="poke-entry">{pokemonDetails.description}</div></p>
