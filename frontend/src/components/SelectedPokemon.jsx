@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 const SelectedPokemon = ({ teams, setTeams }) => {
   const navigate = useNavigate();
   const [pokemonDetails, setPokemonDetails] = useState(null);
-  const [selectedTeam, setSelectedTeam] = useState(""); // To track the chosen team
+  const [selectedTeam, setSelectedTeam] = useState(""); 
   const { name } = useParams();
 
   useEffect(() => {
@@ -12,10 +12,7 @@ const SelectedPokemon = ({ teams, setTeams }) => {
       try {
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}/`);
         const singlePokemon = await response.json();
-        // console.log(`singlePokemon.abilities[0].ability.name:`, singlePokemon.abilities[0].ability.name);
-        // figure out a way to choose the pokemon's desired ability
-        //    dropdown menu to choose perhaps????
-        // the `ability` in the schema Pokemon model is a String, so it has to be just one ability chosen
+        
         const abilitiesArray = singlePokemon.abilities;
         console.log(`abilitiesArray:`, abilitiesArray);
         const commonAbility = singlePokemon.abilities[0].ability.name
@@ -82,7 +79,6 @@ const SelectedPokemon = ({ teams, setTeams }) => {
   }
 
 
-  //------------------------------------RETURN-----------------------------------//
 
   
 
@@ -97,7 +93,6 @@ const SelectedPokemon = ({ teams, setTeams }) => {
         <p>Type: {pokemonDetails.type.toUpperCase()}</p>
         <p>PokéDex Entry: <div id="poke-entry">{pokemonDetails.description}</div></p>
 
-        {/* Team Selection Dropdown */}
         <section id="selected-pokemon-interaction">
           <select value={selectedTeam} onChange={(event) => setSelectedTeam(event.target.value)}>
             <option value="">Select a Team</option>
