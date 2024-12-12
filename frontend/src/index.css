@@ -71,9 +71,9 @@ body {
   font-size: 20px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   background-color: rgb(48, 48, 48);
-  max-width: 1000px;
+  max-width: 900px;
   height: 1040px;
-  border: 10px solid black;
+  border: 5px solid black;
 }
 
 #poke-entry {
@@ -81,10 +81,10 @@ body {
 }
 
 
-#selected-pokemon h2 {
+/* #selected-pokemon h2 {
   color: black;
   text-align: center;
-}
+} */
 
 /* #selected-pokemon > .poke-images {
   flex-direction: row;
@@ -115,12 +115,12 @@ body {
 #selected-pokemon-details {
   margin-top: 60px;
   height: 300px;
-  width: 400px;
+  width: 700px;
   padding: 50px;
   padding-bottom: 80px;
   color: white;
-  background-color: black;
-  border: 10px solid black;
+  background-color: rgb(14, 14, 14);
+  border: 10px solid rgb(111, 97, 97);
   text-align: center;
 }
 
@@ -167,8 +167,8 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   border: none;
-  width: 75px;
-  height: 75px;
+  width: 605px;
+  height: 112px;
   padding: 0;
   cursor: pointer;
   margin-top: 10px;
