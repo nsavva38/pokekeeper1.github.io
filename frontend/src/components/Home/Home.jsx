@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './Home.module.css';
 
 const Home = () => {
+  const Navigate = useNavigate();
   return (
     <>
       <header className={styles.header}>
@@ -13,7 +14,7 @@ const Home = () => {
       <section className={styles.hero}>
         <h1>Welcome to PokéKeeper</h1>
         <p>Your ultimate Pokémon management tool</p>
-        <button onClick={() => alert('Get Started!')}>Get Started</button>
+        <button onClick={() => Navigate(`/register`) }>Get Started</button>
       </section>
 
       <section className={styles.features}>
