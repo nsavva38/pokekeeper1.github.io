@@ -44,12 +44,11 @@ const SelectedPokemon = ({ teams = [], setTeams }) => {
     getSinglePokemon();
   }, [name]);
 
-  // Fetch the teams owned by the logged-in user
   useEffect(() => {
     const fetchUserTeams = async () => {
       try {
-        const response = await api.get('/teams'); // Using the api instance from api.js
-        setTeams(response.data); // Assuming response.data contains an array of teams
+        const response = await api.get('/teams');
+        setTeams(response.data);
       } catch (error) {
         console.error("Error fetching user teams:", error);
       }
@@ -68,8 +67,6 @@ const SelectedPokemon = ({ teams = [], setTeams }) => {
       alert("This team is full");
       return;
     }
-
-    // connect to backend here with POST request to our API
 
     setTeams((prevTeams) => ({
       ...prevTeams,
@@ -91,8 +88,10 @@ const SelectedPokemon = ({ teams = [], setTeams }) => {
       <section id="selected-pokemon-details">
         <h2>{pokemonDetails.name[0].toUpperCase() + pokemonDetails.name.slice(1)}</h2>
         <p>Type: {pokemonDetails.type.toUpperCase()}</p>
-        <p>PokéDex Entry: <div id="poke-entry">{pokemonDetails.description}</div></p>
-
+        <div>
+          <p>PokéDex Entry:</p>
+          <p id="poke-entry">{pokemonDetails.description}</p>
+        </div>
         <section id="selected-pokemon-interaction">
           <select value={selectedTeam} onChange={(event) => setSelectedTeam(event.target.value)}>
             <option value="">Select a Team</option>
@@ -102,7 +101,6 @@ const SelectedPokemon = ({ teams = [], setTeams }) => {
               </option>
             ))}
           </select>
-
           <button onClick={addToTeam}>Add to Team</button>
           <button onClick={() => navigate(`/NationalDex`)}>Back to National Dex</button>
         </section>
