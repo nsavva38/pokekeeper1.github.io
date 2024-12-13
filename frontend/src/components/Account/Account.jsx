@@ -122,8 +122,7 @@ const Account = ({ setIsAuthenticated }) => {
           {teams.map((team) => (
             <li key={team.id} className={styles.team}>
               <section id="teamName-and-deleteButton">
-                <h3>Name: {team.name}</h3>
-                <p>ID: {team.id}</p>
+                <h3>{team.name}</h3>
                 <button onClick={() => deleteTeam(team)}>Delete Team</button>
               </section>
               {team.pokemon && (
