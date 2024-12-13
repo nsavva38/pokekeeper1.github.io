@@ -9,7 +9,7 @@ const NationalDex = ({ pokemon }) => {
 
 
   return (
-    <>
+    <section id="national-dex">
 
       <h2>National Dex</h2>
 
@@ -33,7 +33,7 @@ const NationalDex = ({ pokemon }) => {
         }
 
       </section>
-    </>
+    </section>
   )
 }
 
