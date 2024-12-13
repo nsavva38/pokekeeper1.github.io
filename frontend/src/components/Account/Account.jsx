@@ -17,8 +17,10 @@ const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
           const response = await api.get('/teams', {
             headers: { Authorization: `Bearer ${token}` }
           });
-          setUser(response.data);
-          setTeams(response.data);
+
+          setUser(response.data); 
+          setTeams(response.data)
+
         } catch (error) {
           console.error('Error fetching user data:', error);
           if (error.response?.status === 401) {
@@ -30,29 +32,53 @@ const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
     };
 
     fetchUserData();
-  }, [setIsAuthenticated, navigate]);
 
-  const teamPost = async (teamName) => {
+  }, [setIsAuthenticated, navigate, teams]);
+  const teamPost = async (team) =>{
+
     try {
       const response = await api.post('/teams', {
         name: teamName
       }, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
-      return response.data;
+
     } catch (error) {
       console.error('Error creating team:', error);
     }
-  };
 
+  }
+  const teamFetch = async () =>{
+    try {
+      const response = await api.get('/teams', {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      });
+      console.log(response.data)
+      const teams = await response.data
+      console.log(teams)
+      return teams
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
+    
+  }
+  const teamDelete = async (team) =>{
+    try {
+      const response = await api.delete(`/teams/${team.id}`,{
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      });
+    } catch (error) {
+      console.error('Error deleting team:', error);
+    }
+  }
+  
   const makeTeam = async (event) => {
     event.preventDefault();
-    const newTeam = await teamPost(localTeamName);
-    if (newTeam && localTeamName.trim()) {
-      setTeams((prev) => [...prev, newTeam]);
-      setTeamName(localTeamName);  
-      setLocalTeamName('');  
-    }
+    teamPost(teamName)
+    const teams = await teamFetch()
+    console.log(teams)
+    setTeams(teams)
+
   };
 
   const removeFromTeam = (team, index) => {
@@ -62,12 +88,13 @@ const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
     }));
   };
 
-  const deleteTeam = (team) => {
-    setTeams((prevTeams) => {
-      const updatedTeams = { ...prevTeams };
-      delete updatedTeams[team];
-      return updatedTeams;
-    });
+
+  
+  const deleteTeam = async (team) => {
+    teamDelete(team)
+    const teams = await teamFetch()
+    setTeams(teams)
+    
   };
 
   const handleLogout = () => {
@@ -103,7 +130,7 @@ const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
           {teams.map((team) => (
             <li key={team.id} className={styles.team}>
               <section id="teamName-and-deleteButton">
-                <h3>{team.name}</h3>
+                <h3>{team.name}{team.id}</h3>
                 <button onClick={() => deleteTeam(team)}>Delete Team</button>
               </section>
               {team.pokemon && (
