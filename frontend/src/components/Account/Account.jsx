@@ -19,6 +19,7 @@ const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
           });
 
           setUser(response.data); 
+          console.log(response.data)
           setTeams(response.data)
 
         } catch (error) {
@@ -34,11 +35,11 @@ const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
     fetchUserData();
 
   }, [setIsAuthenticated, navigate, teams]);
-  const teamPost = async (team) =>{
+  const teamPost = async (localTeamName) =>{
 
     try {
       const response = await api.post('/teams', {
-        name: teamName
+        name: localTeamName
       }, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
@@ -74,7 +75,9 @@ const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
   
   const makeTeam = async (event) => {
     event.preventDefault();
-    teamPost(teamName)
+    console.log(event.target)
+    console.log(localTeamName)
+    teamPost(localTeamName)
     const teams = await teamFetch()
     console.log(teams)
     setTeams(teams)
