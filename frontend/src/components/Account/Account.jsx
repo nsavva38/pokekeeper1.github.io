@@ -75,8 +75,6 @@ const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
   
   const makeTeam = async (event) => {
     event.preventDefault();
-    console.log(event.target)
-    console.log(localTeamName)
     teamPost(localTeamName)
     const teams = await teamFetch()
     console.log(teams)
