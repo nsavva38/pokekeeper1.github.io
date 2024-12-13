@@ -55,7 +55,7 @@ const SelectedPokemon = ({ teams = [], setTeams }) => {
       } catch (error) {
         if (error.response && error.response.status === 401) {
           console.log("User not authenticated, clearing teams...");
-          setTeams([]); // Clear teams if user is not authenticated
+          setTeams([]); 
         } else {
           console.error("Error fetching user teams:", error);
         }
@@ -80,7 +80,10 @@ const SelectedPokemon = ({ teams = [], setTeams }) => {
 
     try {
       const response = await api.post(`/teams/${team.id}/pokemon`, {
-        pokemon: pokemonDetails,
+        pokemon: {
+          name: pokemonDetails.name,
+          ability: pokemonDetails.ability,
+        },
       });
       setTeams((prevTeams) => {
         return prevTeams.map((t) => 
@@ -179,7 +182,7 @@ const SelectedPokemon = ({ teams = [], setTeams }) => {
           </select>
 
           <button onClick={addToTeam}>Add to Team</button>
-          <button onClick={() => navigate(`/NationalDex`)}>National Dex</button>
+          <button onClick={() => navigate(`/NationalDex`)}>Back to National Dex</button>
         </section>
       </section>
     </div>
