@@ -32,6 +32,12 @@ body {
 
 }
 
+#national-dex h2 {
+  margin-bottom: 50px;
+  margin-top: 100px;
+  text-align: center;
+}
+
 /* .page-title {
   margin-top: 100px;
 } */
@@ -62,6 +68,10 @@ body {
   color: white;
 }
 
+
+
+
+
 #selected-pokemon {
   display: flex;
   flex-direction: column;
@@ -74,6 +84,62 @@ body {
   max-width: 900px;
   height: 1040px;
   border: 5px solid black;
+  position: relative; /* Ensure relative positioning for stacking context */
+  z-index: 11; /* Set a higher stacking order for the main content */
+}
+
+.left-margin-image,
+.right-margin-image {
+  position: absolute;
+  top: 50%; /* Center vertically relative to #selected-pokemon */
+  transform: translateY(-50%);
+  width: 100px; /* Adjust size as needed */
+  height: auto;
+  z-index: 10; /* Lower stacking order for images to appear behind */
+  
+    /* Creates a colored outline */
+    cursor: default;
+}
+
+.left-margin-image {
+  left: -20px; /* Adjust for spacing from the #selected-pokemon element */
+  width: 800px;
+  z-index: 4;
+}
+
+#l2 {
+  left: -350px; /* Adjust for spacing from the #selected-pokemon element */
+  width: 1500px;
+  z-index: 3;
+}
+#l3 {
+  left: -1200px; /* Adjust for spacing from the #selected-pokemon element */
+  width: 3500px;
+  z-index: 2;
+}
+#l4 {
+  left: -2100px; /* Adjust for spacing from the #selected-pokemon element */
+  width: 6000px;
+  height: 10000px;
+  z-index: 0;
+}
+
+
+.right-margin-image {
+  right: -425px; /* Adjust for spacing from the #selected-pokemon element */
+  width: 800px;
+  z-index: 3;
+}
+
+#r2 {
+  right: -795px; /* Adjust for spacing from the #selected-pokemon element */
+  width: 1500px;
+  z-index: 2;
+}
+#r3 {
+  right: -1940px; /* Adjust for spacing from the #selected-pokemon element */
+  width: 3500px;
+  z-index: 1;
 }
 
 #poke-entry {
@@ -122,6 +188,7 @@ body {
   background-color: rgb(14, 14, 14);
   border: 10px solid rgb(111, 97, 97);
   text-align: center;
+  box-shadow: 0px 0px 100px 1000px rgba(57, 56, 56, 0.5); 
 }
 
 #selected-pokemon-details h2 {
