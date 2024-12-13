@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import pokeballImage from '../images/pokeball3.png';
 import api from './api';
 
 const SelectedPokemon = ({ teams = [], setTeams }) => {
@@ -97,31 +98,91 @@ const SelectedPokemon = ({ teams = [], setTeams }) => {
   }
 
   return (
-    <section id="selected-pokemon">
-      <div className="poke-images">
-        <img src={pokemonDetails.sprite} alt={pokemonDetails.name} className="page-title" />
-      </div>
-      <section id="selected-pokemon-details">
-        <h2>{pokemonDetails.name[0].toUpperCase() + pokemonDetails.name.slice(1)}</h2>
-        <p>Type: {pokemonDetails.type.toUpperCase()}</p>
-        <div>
-          <p>PokéDex Entry:</p>
-          <p id="poke-entry">{pokemonDetails.description}</p>
-        </div>
+    <div style={{ position: "relative" }}>
+      <img
+        src={pokemonDetails.shinySprite}
+        alt="Left Margin Image"
+        className="left-margin-image"
+        id="l1"
+      />
+      <img
+        src={pokemonDetails.sprite}
+        alt="Left Margin Image"
+        className="left-margin-image"
+        id="l2"
+      />
+      <img
+        src={pokemonDetails.shinySprite}
+        alt="Left Margin Image"
+        className="left-margin-image"
+        id="l3"
+      />
+      <img
+        src={pokemonDetails.sprite}
+        alt="Left Margin Image"
+        className="left-margin-image"
+        id="l4"
+      />
+      <img
+        src={pokeballImage}
+        alt="Left Margin Image"
+        className="left-margin-image"
+        id="background-pokeball"
+      />
+
+      <img
+        src={pokemonDetails.shinySprite}
+        alt="Right Margin Image"
+        className="right-margin-image"
+        id="r1"
+      />
+      <img
+        src={pokemonDetails.sprite}
+        alt="Right Margin Image"
+        className="right-margin-image"
+        id="r2"
+      />
+      <img
+        src={pokemonDetails.shinySprite}
+        alt="Right Margin Image"
+        className="right-margin-image"
+        id="r3"
+      />
+      <img
+        src={pokemonDetails.sprite}
+        alt="Right Margin Image"
+        className="right-margin-image"
+        id="r4"
+      />
+      <section id="selected-pokemon">
+        <section id="selected-pokemon-details">
+          <img src={pokemonDetails.sprite} alt={pokemonDetails.name} />
+          <h2>{pokemonDetails.name[0].toUpperCase() + pokemonDetails.name.slice(1)}</h2>
+          <p>Type: {pokemonDetails.type.toUpperCase()}</p>
+          <p>
+            PokéDex Entry:{" "}
+            <span id="poke-entry">{pokemonDetails.description}</span>
+          </p>
+        </section>
+
         <section id="selected-pokemon-interaction">
-          <select value={selectedTeam} onChange={(event) => setSelectedTeam(event.target.value)}>
+          <select
+            value={selectedTeam}
+            onChange={(event) => setSelectedTeam(event.target.value)}
+          >
             <option value="">Select a Team</option>
-            {Array.isArray(teams) && teams.map((team) => (
-              <option key={team.id} value={team.name}>
-                {team.name}
+            {Object.keys(teams).map((teamName) => (
+              <option key={teamName} value={teamName}>
+                {teamName}
               </option>
             ))}
           </select>
+
           <button onClick={addToTeam}>Add to Team</button>
-          <button onClick={() => navigate(`/NationalDex`)}>Back to National Dex</button>
+          <button onClick={() => navigate(`/NationalDex`)}>National Dex</button>
         </section>
-      </section> 
-    </section> 
+      </section>
+    </div>
   );
 };
 
