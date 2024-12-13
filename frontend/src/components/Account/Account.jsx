@@ -74,6 +74,8 @@ const Account = ({ teamName, setTeamName, setIsAuthenticated }) => {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
     setIsAuthenticated(false);
+    setTeams([]);
+    console.log('Teams cleared:', teams);
     navigate('/login');
   };
 

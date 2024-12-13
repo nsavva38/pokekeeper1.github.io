@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import api from './api'; 
+import api from './api';
 
 const SelectedPokemon = ({ teams = [], setTeams }) => {
   const navigate = useNavigate();
@@ -47,33 +47,49 @@ const SelectedPokemon = ({ teams = [], setTeams }) => {
   useEffect(() => {
     const fetchUserTeams = async () => {
       try {
+        console.log('Fetching teams data...');
         const response = await api.get('/teams');
         setTeams(response.data);
+        console.log('Teams fetched:', response.data);
       } catch (error) {
-        console.error("Error fetching user teams:", error);
+        if (error.response && error.response.status === 401) {
+          console.log("User not authenticated, clearing teams...");
+          setTeams([]); // Clear teams if user is not authenticated
+        } else {
+          console.error("Error fetching user teams:", error);
+        }
       }
     };
 
     fetchUserTeams();
   }, [setTeams]);
 
-  const addToTeam = () => {
+  const addToTeam = async () => {
     if (!selectedTeam) {
       alert("Please select a team!");
       return;
     }
 
-    if (teams[selectedTeam].length >= 6) {
+    const team = teams.find((team) => team.name === selectedTeam);
+
+    if (team && team.pokemon.length >= 6) {
       alert("This team is full");
       return;
     }
 
-    setTeams((prevTeams) => ({
-      ...prevTeams,
-      [selectedTeam]: [...(prevTeams[selectedTeam] || []), pokemonDetails],
-    }));
-
-    alert(`${pokemonDetails.name[0].toUpperCase() + pokemonDetails.name.slice(1)} added to ${selectedTeam}!`);
+    try {
+      const response = await api.post(`/teams/${team.id}/pokemon`, {
+        pokemon: pokemonDetails,
+      });
+      setTeams((prevTeams) => {
+        return prevTeams.map((t) => 
+          t.id === team.id ? { ...t, pokemon: [...t.pokemon, pokemonDetails] } : t
+        );
+      });
+      alert(`${pokemonDetails.name[0].toUpperCase() + pokemonDetails.name.slice(1)} added to ${selectedTeam}!`);
+    } catch (error) {
+      console.error("Error adding Pokémon to team:", error);
+    }
   };
 
   if (!pokemonDetails) {
