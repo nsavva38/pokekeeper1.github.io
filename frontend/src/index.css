@@ -118,27 +118,43 @@ body {
   z-index: 2;
 }
 #l4 {
-  left: -2100px; /* Adjust for spacing from the #selected-pokemon element */
-  width: 6000px;
-  height: 10000px;
+  left: -2800px; /* Adjust for spacing from the #selected-pokemon element */
+  
+  width: 7000px;
+  
+  z-index: 1;
+}
+
+#background-pokeball {
+  left: -300px; /* Adjust for spacing from the #selected-pokemon element */
+  width: 2500px;
+  
   z-index: 0;
+  
 }
 
 
 .right-margin-image {
   right: -425px; /* Adjust for spacing from the #selected-pokemon element */
   width: 800px;
-  z-index: 3;
+  z-index: 4;
 }
 
 #r2 {
   right: -795px; /* Adjust for spacing from the #selected-pokemon element */
   width: 1500px;
-  z-index: 2;
+  z-index: 3;
 }
 #r3 {
   right: -1940px; /* Adjust for spacing from the #selected-pokemon element */
   width: 3500px;
+  z-index: 2;
+}
+#r4 {
+  left: -1400px; /* Adjust for spacing from the #selected-pokemon element */
+  
+  width: 7000px;
+  
   z-index: 1;
 }
 

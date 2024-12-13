@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import pokeballImage from '../images/pokeball3.png';
 
 const SelectedPokemon = ({ teams, setTeams }) => {
   const navigate = useNavigate();
@@ -112,6 +113,13 @@ const SelectedPokemon = ({ teams, setTeams }) => {
     className="left-margin-image"
     id="l4"
   />
+    <img
+    src={pokeballImage}
+    alt="Left Margin Image"
+    className="left-margin-image"
+    id="background-pokeball"
+  />
+
   <img
     src={pokemonDetails.shinySprite}
     alt="Right Margin Image"
@@ -129,6 +137,12 @@ const SelectedPokemon = ({ teams, setTeams }) => {
     alt="Right Margin Image"
     className="right-margin-image"
     id="r3"
+  />
+        <img
+    src={pokemonDetails.sprite}
+    alt="Right Margin Image"
+    className="right-margin-image"
+    id="r4"
   />
   <section id="selected-pokemon">
     <section id="selected-pokemon-details">
@@ -155,7 +169,7 @@ const SelectedPokemon = ({ teams, setTeams }) => {
       </select>
 
       <button onClick={addToTeam}>Add to Team</button>
-      <button onClick={() => navigate(`/NationalDex`)}>Back to National Dex</button>
+      <button onClick={() => navigate(`/NationalDex`)}>National Dex</button>
     </section>
   </section>
 </div>
