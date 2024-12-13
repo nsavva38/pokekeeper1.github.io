@@ -171,7 +171,7 @@ const SelectedPokemon = ({ teams = [], setTeams }) => {
             onChange={(event) => setSelectedTeam(event.target.value)}
           >
             <option value="">Select a Team</option>
-            {teams.map((team) => (
+            {Array.isArray(teams) && teams.map((team) => (
               <option key={team.id} value={team.name}>
                 {team.name || "Unnamed Team"}
               </option>
