@@ -67,13 +67,15 @@ body {
 
 #pokemon151 > div > h3 {
   color: white;
+  margin-top: 10px;
 }
 
 #pokemon151 > div:hover {
-  background-image: url('./images/pokeball2.png');
+  background-image: url('./images/pokeball4.png');
   width: 150px;
   h3 {
     color: black;
+    margin-top: 20px;
   }
   img {
     width: 140px;
