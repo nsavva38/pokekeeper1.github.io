@@ -55,7 +55,7 @@ const SelectedPokemon = ({ teams = [], setTeams }) => {
       } catch (error) {
         if (error.response && error.response.status === 401) {
           console.log("User not authenticated, clearing teams...");
-          setTeams([]); // Clear teams if user is not authenticated
+          setTeams([]); 
         } else {
           console.error("Error fetching user teams:", error);
         }
@@ -70,21 +70,42 @@ const SelectedPokemon = ({ teams = [], setTeams }) => {
       alert("Please select a team!");
       return;
     }
-
+  
     const team = teams.find((team) => team.name === selectedTeam);
-
-    if (team && team.pokemon.length >= 6) {
+  
+    if (!team) {
+      alert("Selected team not found!");
+      return;
+    }
+  
+    if (team.pokemon && team.pokemon.length >= 6) {
       alert("This team is full");
       return;
     }
-
+  
     try {
       const response = await api.post(`/teams/${team.id}/pokemon`, {
-        pokemon: pokemonDetails,
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify({
+          pokemon: {
+            name: pokemonDetails.name,
+            ability: pokemonDetails.ability,
+          },
+        }),
       });
+  
+      if (!response.ok) {
+        throw new Error('Failed to add Pokémon to team');
+      }
+  
+      const data = await response.json();
       setTeams((prevTeams) => {
         return prevTeams.map((t) => 
-          t.id === team.id ? { ...t, pokemon: [...t.pokemon, pokemonDetails] } : t
+          t.id === team.id ? { ...t, pokemon: [...(t.pokemon || []), data] } : t
         );
       });
       alert(`${pokemonDetails.name[0].toUpperCase() + pokemonDetails.name.slice(1)} added to ${selectedTeam}!`);
@@ -92,6 +113,7 @@ const SelectedPokemon = ({ teams = [], setTeams }) => {
       console.error("Error adding Pokémon to team:", error);
     }
   };
+  
 
   if (!pokemonDetails) {
     return <p>Loading...</p>;
@@ -179,7 +201,7 @@ const SelectedPokemon = ({ teams = [], setTeams }) => {
           </select>
 
           <button onClick={addToTeam}>Add to Team</button>
-          <button onClick={() => navigate(`/NationalDex`)}>National Dex</button>
+          <button onClick={() => navigate(`/NationalDex`)}>Back to National Dex</button>
         </section>
       </section>
     </div>
