@@ -50,3 +50,29 @@ router.get("/:id", async (req, res, next) => {
    next(e)
   }
  })
+
+ router.delete("/:id", async (req, res, next) => {
+  const { id } = req.params
+  try {
+   const team = await prisma.team.findUniqueOrThrow({
+     where: { id: +id },
+     include: { pokemon: true },
+   });
+   if (team.pokemon) {
+      team.pokemon.map(async (indPkmn) => {
+        await prisma.pokemon.delete({ where: { id: +indPkmn.id } });
+      })
+   }
+   if (!team) {
+    return next({ status: 404,message: `Team with id ${id} does not exist.` });
+   }
+   if (team.ownerId !== req.user.id) {
+     next({ status: 403, message: "This is not your team" });
+   }
+   await prisma.team.delete({ where: { id: +id } });
+   res.sendStatus(204);
+   }
+  catch (e) {
+   next(e)
+  }
+ })
