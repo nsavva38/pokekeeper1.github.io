@@ -105,7 +105,7 @@ const Account = ({ setIsAuthenticated }) => {
 
   return (
     <div className={styles.container}>
-      <h2>Hello, {username || user.username}</h2>
+      <h2 className={styles.accountTitle}>Hello, {username || user.username}</h2>
       <p>Make a New Team</p>
       <form onSubmit={makeTeam} className={styles.form}>
         <input
@@ -116,7 +116,7 @@ const Account = ({ setIsAuthenticated }) => {
         <button type="submit">Make Team</button>
       </form>
 
-      <h3>My Teams</h3>
+      <h3 className={styles.h3AccountTeams}>My Teams</h3>
       <section id="teams">
         <ul className={styles.teams}>
           {teams.map((team) => (

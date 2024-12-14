@@ -72,6 +72,7 @@ const SelectedPokemon = ({ teams = [], setTeams }) => {
     }
 
     const team = teams.find((team) => team.name === selectedTeam);
+    console.log(team);
 
     if (team && team.pokemon.length >= 6) {
       alert("This team is full");

@@ -1,6 +1,11 @@
 /* Account.modules.css */
 .container {
   padding: 20px;
+  background-image: url('../../images/pokeball.png');
+  background-color: transparent;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   background-color: #131313;
   color: #e0e0e0;
   min-height: 100vh; /* Ensure full height */
@@ -32,8 +37,11 @@
   text-decoration: underline;
 }
 
-h2 {
-  margin-top: 60px; /* Ensure enough space from the nav */
+.accountTitle {
+  margin-top: 100px; /* Ensure enough space from the nav */
+  margin-bottom: 60px;
+  color: white;
+  text-align: center;
 }
 
 .form {
@@ -47,28 +55,44 @@ h2 {
   padding: 10px;
   margin-right: 10px;
   border-radius: 4px;
+  border-color: white;
 }
 
 .form button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-image: url('../../images/pokeball2.png');
   background-color: transparent;
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  color: #121212;
+  position: relative;
+  top: -63px;
+  left: 200px;
+  color: transparent;
   border: none;
-  padding: 10px 20px;
   border-radius: 4px;
+  width: 50px; /* Adjust as needed */
+  height: 50px;
   cursor: pointer;
+  text-align: center;
 }
 
 .form button:hover {
-  background-color: #9f6fe0;
+  color: white;
+  background-image: url('../../images/pokeball3.png');
+}
+
+.h3AccountTeams {
+  text-align: center;
 }
 
 .teams {
   list-style: none;
   padding: 0;
+  position: relative;
+  left: 150px;
 }
 
 .team {
@@ -86,7 +110,7 @@ h2 {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  color: #121212;
+  color: white;
   border: none;
   padding: 5px 10px;
   border-radius: 4px;
@@ -131,7 +155,7 @@ button {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  color: #121212;
+  color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 4px;
