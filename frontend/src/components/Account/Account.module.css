@@ -135,7 +135,7 @@
   background-color: #b25463;
 }
 
-button {
+.container > button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -154,7 +154,7 @@ button {
   text-align: center;
 }
 
-button:hover {
+.container > button:hover {
   background-color: #b25463;
   color: white;
   background-image: url('../../images/pokeball3.png');
