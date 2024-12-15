@@ -69,6 +69,7 @@ const SelectedPokemon = ({ teams = [], setTeams }) => {
     }
   
     const team = teams.find((team) => team.name === selectedTeam);
+
   
     if (!team) {
       alert("Selected team not found!");

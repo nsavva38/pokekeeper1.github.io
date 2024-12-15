@@ -69,6 +69,21 @@ body {
   color: white;
 }
 
+#pokemon151 > div:hover {
+  background-image: url('./images/pokeball2.png');
+  width: 150px;
+  h3 {
+    color: black;
+  }
+  img {
+    width: 140px;
+  }
+}
+
+#pokemon151 > div > h3:hover {
+  color: black;
+}
+
 
 
 
