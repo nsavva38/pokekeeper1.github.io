@@ -178,17 +178,18 @@ const SelectedPokemon = ({ teams = [], setTeams }) => {
         </section>
 
         <section id="selected-pokemon-interaction">
-          <select
-            value={selectedTeam}
-            onChange={(event) => setSelectedTeam(event.target.value)}
-          >
-            <option value="">Select a Team</option>
-            {Array.isArray(teams) && teams.map((team) => (
-              <option key={team.id} value={team.name}>
-                {team.name || "Unnamed Team"}
-              </option>
-            ))}
-          </select>
+        <select
+          value={selectedTeam}
+          onChange={(event) => setSelectedTeam(event.target.value)}
+          style={{ color: '#e0e0e0', backgroundColor: '#333' }} 
+        >
+          <option value="" style={{ color: '#e0e0e0' }}>Select a Team</option>
+          {Array.isArray(teams) && teams.map((team) => (
+            <option key={team.id} value={team.name} style={{ color: '#e0e0e0' }}>
+              {team.name || "Unnamed Team"}
+            </option>
+          ))}
+        </select>
 
           <button onClick={addToTeam}>Add to Team</button>
           <button onClick={() => navigate(`/NationalDex`)}>Back to National Dex</button>
