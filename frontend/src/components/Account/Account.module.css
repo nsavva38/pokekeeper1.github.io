@@ -11,8 +11,6 @@
   min-height: 100vh; /* Ensure full height */
 }
 
-
-
 .accountTitle {
   margin-top: 100px; /* Ensure enough space from the nav */
   margin-bottom: 60px;
@@ -110,7 +108,12 @@
 .member {
   display: flex;
   align-items: center;
+  justify-content: space-between; /* Align items horizontally */
   margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #444; /* Add a border for better visibility */
+  border-radius: 4px;
+  background-color: #222; /* Background color for the member */
 }
 
 .member img {
@@ -120,6 +123,7 @@
 
 .member p {
   margin-right: 10px;
+  color: #e0e0e0; /* Text color for better readability */
 }
 
 .member button {

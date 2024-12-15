@@ -113,3 +113,8 @@ Authorization: Bearer {{token1}}
 ### Delete a Team
 DELETE {{host}}/teams/TEAM_ID
 Authorization: Bearer {{token1}}
+
+### Remove Pokémon from a Team
+DELETE {{host}}/teams/91/pokemon/15
+Content-Type: application/json
+Authorization: Bearer {{token1}}
