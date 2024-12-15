@@ -48,13 +48,10 @@ const SelectedPokemon = ({ teams = [], setTeams }) => {
   useEffect(() => {
     const fetchUserTeams = async () => {
       try {
-        console.log('Fetching teams data...');
         const response = await api.get('/teams');
         setTeams(response.data);
-        console.log('Teams fetched:', response.data);
       } catch (error) {
         if (error.response && error.response.status === 401) {
-          console.log("User not authenticated, clearing teams...");
           setTeams([]); 
         } else {
           console.error("Error fetching user teams:", error);
@@ -85,24 +82,17 @@ const SelectedPokemon = ({ teams = [], setTeams }) => {
   
     try {
       const response = await api.post(`/teams/${team.id}/pokemon`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        pokemon: {
+          name: pokemonDetails.name,
+          ability: pokemonDetails.ability,
         },
-        body: JSON.stringify({
-          pokemon: {
-            name: pokemonDetails.name,
-            ability: pokemonDetails.ability,
-          },
-        }),
       });
   
-      if (!response.ok) {
+      if (!response.status === 200) {
         throw new Error('Failed to add Pokémon to team');
       }
   
-      const data = await response.json();
+      const data = response.data;
       setTeams((prevTeams) => {
         return prevTeams.map((t) => 
           t.id === team.id ? { ...t, pokemon: [...(t.pokemon || []), data] } : t
@@ -113,7 +103,6 @@ const SelectedPokemon = ({ teams = [], setTeams }) => {
       console.error("Error adding Pokémon to team:", error);
     }
   };
-  
 
   if (!pokemonDetails) {
     return <p>Loading...</p>;
