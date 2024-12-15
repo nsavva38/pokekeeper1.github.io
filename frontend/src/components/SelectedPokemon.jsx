@@ -85,24 +85,19 @@ const SelectedPokemon = ({ teams = [], setTeams }) => {
   
     try {
       const response = await api.post(`/teams/${team.id}/pokemon`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        },
-        body: JSON.stringify({
+    
           pokemon: {
             name: pokemonDetails.name,
             ability: pokemonDetails.ability,
           },
-        }),
+        
       });
   
-      if (!response.ok) {
+      if (!response.status === 200) {
         throw new Error('Failed to add Pokémon to team');
       }
   
-      const data = await response.json();
+      const data = response.data;
       setTeams((prevTeams) => {
         return prevTeams.map((t) => 
           t.id === team.id ? { ...t, pokemon: [...(t.pokemon || []), data] } : t
