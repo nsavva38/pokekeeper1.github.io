@@ -19,7 +19,6 @@ router.get("/", authenticate, async (req, res, next) => {
   }
 });
 
-
 router.post("/", authenticate, async (req, res, next) => {
   const { name } = req.body;
   try {
@@ -89,6 +88,34 @@ router.delete("/:id", authenticate, async (req, res, next) => {
       return next({ status: 403, message: "This is not your team" });
     }
     await prisma.team.delete({ where: { id: +id } });
+    res.sendStatus(204);
+  } catch (e) {
+    next(e);
+  }
+});
+
+router.delete("/:teamId/pokemon/:pokemonId", authenticate, async (req, res, next) => {
+  const { teamId, pokemonId } = req.params;
+
+  try {
+    const team = await prisma.team.findUnique({
+      where: { id: +teamId },
+      include: { pokemon: true }
+    });
+    if (!team) {
+      return next({ status: 404, message: `Team with id ${teamId} does not exist.` });
+    }
+
+    if (req.user.id !== team.ownerId) {
+      return next({ status: 403, message: "This is not your team" });
+    }
+
+    const pokemon = team.pokemon.find(p => p.id === +pokemonId);
+    if (!pokemon) {
+      return next({ status: 404, message: `Pokemon with id ${pokemonId} does not exist in this team.` });
+    }
+
+    await prisma.pokemon.delete({ where: { id: +pokemonId } });
     res.sendStatus(204);
   } catch (e) {
     next(e);

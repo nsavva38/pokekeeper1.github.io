@@ -7,17 +7,14 @@ const bodyParser = require("body-parser");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Define allowed origins
 const allowedOrigins = [
-  'https://pokekeeper.netlify.app', // Frontend URL
-  'http://localhost:5173', // Local frontend development URL
-  'https://deploy-preview-42--pokekeeper.netlify.app' // Netlify deploy preview
+  'https://pokekeeper.netlify.app', 
+  'http://localhost:5173',
+  'https://deploy-preview-42--pokekeeper.netlify.app'
 ];
 
-// Configure CORS to allow multiple origins
 app.use(cors({
   origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
     if (allowedOrigins.includes(origin)) {
       return callback(null, true);
@@ -26,26 +23,21 @@ app.use(cors({
       return callback(new Error(msg), false);
     }
   },
-  optionsSuccessStatus: 200 // Some legacy browsers (IE11, various SmartTVs) choke on 204
+  optionsSuccessStatus: 200
 }));
 
 app.use(require("morgan")("dev"));
 app.use(express.json());
-app.use(bodyParser.json()); // Parse JSON bodies
+app.use(bodyParser.json());
 
-// Authentication router
 app.use(require("./api/auth").router);
-
-// Teams and Pokémon routers
 app.use("/teams", require("./api/teams"));
 app.use("/pokemon", require("./api/pokemon"));
 
-// Handle 404 errors
 app.use((req, res, next) => {
   next({ status: 404, message: "Endpoint not found." });
 });
 
-// Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(err.status ?? 500);
