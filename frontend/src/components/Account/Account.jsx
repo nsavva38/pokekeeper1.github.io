@@ -72,11 +72,25 @@ const Account = ({ setIsAuthenticated }) => {
     setTeams(teams);
   };
 
-  const removeFromTeam = (team, index) => {
-    setTeams((prevTeams) => prevTeams.map((t) =>
-      t.id === team.id ? { ...t, pokemon: t.pokemon.filter((_, i) => i !== index) } : t
-    ));
+  const removeFromTeam = async (team, index) => {
+    const pokemonToRemove = team.pokemon[index];
+  
+    try {
+      await api.delete(`/teams/${team.id}/pokemon/${pokemonToRemove.id}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      });
+  
+      setTeams((prevTeams) => prevTeams.map((t) =>
+        t.id === team.id ? { ...t, pokemon: t.pokemon.filter((_, i) => i !== index) } : t
+      ));
+  
+      alert(`${pokemonToRemove.name} has been removed from the team.`);
+    } catch (error) {
+      console.error("Error removing Pokémon from team:", error);
+      alert("Failed to remove Pokémon from the team. Please try again.");
+    }
   };
+  
 
   const deleteTeam = async (team) => {
     await teamDelete(team);
