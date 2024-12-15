@@ -9,12 +9,16 @@ router.get("/", authenticate, async (req, res, next) => {
   try {
     const teams = await prisma.team.findMany({
       where: { ownerId: req.user.id },
+      include: {
+        pokemon: true
+      }
     });
     res.json(teams);
   } catch (e) {
     next(e);
   }
 });
+
 
 router.post("/", authenticate, async (req, res, next) => {
   const { name } = req.body;
