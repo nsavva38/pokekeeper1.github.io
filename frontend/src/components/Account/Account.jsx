@@ -70,6 +70,7 @@ const Account = ({ setIsAuthenticated }) => {
     await teamPost(localTeamName);
     const teams = await teamFetch();
     setTeams(teams);
+    setLocalTeamName(``)
   };
 
   const removeFromTeam = async (team, index) => {
