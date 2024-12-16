@@ -74,6 +74,7 @@ const Account = ({ setIsAuthenticated }) => {
     const teams = await teamFetch();
     console.log(teams)
     setTeams(teams)
+    setLocalTeamName('')
   };
 
   const removeFromTeam = (team, index) => {
