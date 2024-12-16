@@ -192,7 +192,7 @@ const SelectedPokemon = ({ teams = [], setTeams }) => {
         </select>
 
           <button onClick={addToTeam}>Add to Team</button>
-          <button onClick={() => navigate(`/NationalDex`)}>Back to National Dex</button>
+          <button onClick={() => navigate(`/NationalDex`)}>National Dex</button>
         </section>
       </section>
     </div>
