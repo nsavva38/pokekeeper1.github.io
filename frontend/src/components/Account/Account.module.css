@@ -65,8 +65,10 @@
 .teams {
   list-style: none;
   padding: 0;
-  position: relative;
-  left: 350px;
+  margin: 0;
+  margin-left: 20%;
+  text-align: left;
+  
 }
 
 .team {
