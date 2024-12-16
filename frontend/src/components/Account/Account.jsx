@@ -3,11 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import styles from './Account.module.css';
 import api from '../api';
 
-const Account = ({ setIsAuthenticated }) => {
+const Account = ({ setIsAuthenticated, pokemon }) => {
   const [user, setUser] = useState(null);
   const [teams, setTeams] = useState([]);
   const [localTeamName, setLocalTeamName] = useState(''); 
   const navigate = useNavigate();
+  const pokemon151 = pokemon;
+  console.log(pokemon151);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -73,6 +75,7 @@ const Account = ({ setIsAuthenticated }) => {
     setLocalTeamName(``)
   };
 
+
   const removeFromTeam = async (team, index) => {
     const pokemonToRemove = team.pokemon[index];
   
@@ -91,7 +94,6 @@ const Account = ({ setIsAuthenticated }) => {
       alert("Failed to remove Pokémon from the team. Please try again.");
     }
   };
-  
 
   const deleteTeam = async (team) => {
     await teamDelete(team);
@@ -135,19 +137,26 @@ const Account = ({ setIsAuthenticated }) => {
             </section>
             {team.pokemon && team.pokemon.length > 0 ? (
               <section id="team-members">
-                {team.pokemon.map((pokemon, index) => (
-                  <section id="member" key={index} className={styles.member}>
-                    <img 
-                      src={pokemon.sprite} 
-                      onClick={() => navigate(`/NationalDex/${pokemon.name}`)} 
-                      alt={pokemon.name} 
-                    />
-                    <p onClick={() => navigate(`/NationalDex/${pokemon.name}`)}>
-                      {pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}
-                    </p>
-                    <button onClick={() => removeFromTeam(team, index)}>Remove from Team</button>
-                  </section>
-                ))}
+                {team.pokemon.map((pokemon, index) => {
+                  const matchedPokemon = pokemon151.find(
+                    (poke) => poke.name.toLowerCase() === pokemon.name.toLowerCase()
+                  );
+
+                  return (
+                    <section id="member" key={index} className={styles.member}>
+                      {console.log('Matched Pokémon:', matchedPokemon)}
+                      <img 
+                        src={matchedPokemon.sprite} 
+                        onClick={() => navigate(`/NationalDex/${pokemon.name}`)} 
+                        alt={pokemon.name} 
+                      />
+                      <p onClick={() => navigate(`/NationalDex/${pokemon.name}`)}>
+                        {pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}
+                      </p>
+                      <button onClick={() => removeFromTeam(team, index)}>Remove from Team</button>
+                    </section>
+                  );
+                })}
               </section>
             ) : (
               <p>No Pokémon in this team yet.</p>
