@@ -136,7 +136,6 @@ const Account = ({ setIsAuthenticated, pokemon }) => {
             {team.pokemon && team.pokemon.length > 0 ? (
               <section id="team-members">
                 {team.pokemon.map((pokemon, index) => {
-                  // Find the matched Pokémon from pokemon151
                   const matchedPokemon = pokemon151.find(
                     (poke) => poke.name.toLowerCase() === pokemon.name.toLowerCase()
                   );
