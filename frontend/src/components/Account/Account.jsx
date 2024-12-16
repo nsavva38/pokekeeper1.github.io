@@ -71,9 +71,9 @@ const Account = ({ setIsAuthenticated, pokemon }) => {
     event.preventDefault();
     await teamPost(localTeamName);
     const teams = await teamFetch();
-   
-    setTeams(teams)
-    setLocalTeamName('')
+    setTeams(teams);
+    setLocalTeamName(``)
+  };
 
 
   const removeFromTeam = async (team, index) => {
