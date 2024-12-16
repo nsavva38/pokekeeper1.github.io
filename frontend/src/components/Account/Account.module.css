@@ -66,7 +66,7 @@
   list-style: none;
   padding: 0;
   position: relative;
-  left: 150px;
+  left: 350px;
 }
 
 .team {
@@ -106,14 +106,15 @@
 }
 
 .member {
+  background-image: url('../../images/pokeball3.png');
   display: flex;
   align-items: center;
   justify-content: space-between; /* Align items horizontally */
   margin-bottom: 10px;
   padding: 10px;
-  border: 1px solid #444; /* Add a border for better visibility */
+  border: 3px solid #ffffff; /* Add a border for better visibility */
   border-radius: 4px;
-  background-color: #222; /* Background color for the member */
+  background-color: #727272; /* Background color for the member */
 }
 
 .member img {
@@ -127,16 +128,17 @@
 }
 
 .member button {
-  background-color: #cf6679;
   color: #121212;
   border: none;
   padding: 5px 10px;
   border-radius: 4px;
   cursor: pointer;
+  color: transparent;
 }
 
 .member button:hover {
   background-color: #b25463;
+  background-image: url('../../images/pokeball3.png');
 }
 
 .container > button {
