@@ -101,7 +101,7 @@ const App = () => {
           path="/Account"
           element={
             <ProtectedRoute isAuthenticated={isAuthenticated}>
-              <Account teamName={teamName} setTeamName={setTeamName} teams={teams} setTeams={setTeams} setIsAuthenticated={setIsAuthenticated} />
+              <Account pokemon={pokemon} teamName={teamName} setTeamName={setTeamName} teams={teams} setTeams={setTeams} setIsAuthenticated={setIsAuthenticated} />
             </ProtectedRoute>
           }
         />

@@ -1,5 +1,10 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  background-color: grey;
+  background-color: #131313;
 }
 
 
@@ -7,19 +12,23 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: white;
+  background-color: #101010;
   display: flex;
   justify-content: space-between;
   padding: 10px 20px;
   z-index: 1000;
 }
 
+#navigation-and-title a {
+  color: white;
+}
 #navigation-and-title nav {
   display: flex;
   gap: 10px;
 }
 
 #navigation-and-title > h1 {
+  color: white;
   margin: 0;
   padding: 0;
   text-align: center;
@@ -32,7 +41,14 @@ body {
 
 }
 
+#national-dex {
+  background-image: url('./images/pokeball.png');
+  background-color: #131313;
+
+}
+
 #national-dex h2 {
+  color: white;
   margin-bottom: 50px;
   margin-top: 100px;
   text-align: center;
@@ -67,6 +83,22 @@ body {
 
 #pokemon151 > div > h3 {
   color: white;
+  margin-top: 10px;
+}
+
+#pokemon151 > div:hover {
+  background-image: url('./images/pokeball4.png');
+  width: 150px;
+  h3 {
+    margin-top: 20px;
+  }
+  img {
+    width: 140px;
+  }
+}
+
+#pokemon151 > div > h3:hover {
+  color: black;
 }
 
 

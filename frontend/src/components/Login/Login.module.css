@@ -1,10 +1,15 @@
 .container {
+  margin-top: 70px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: calc(100vh - 60px); 
-  background-color: #817d7d;
+  background-color: transparent;
+  background-image: url('../../images/151-sprite.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 
 .form {
@@ -12,18 +17,22 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #9d9b9be0;
+  background-color: transparent;
+  background-image: url('../../images/pokeball2.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin: 0 auto; 
-  width: 100%;
+  width: 80%;
   max-width: 400px; 
-  border-radius: 8px; 
+  border-radius: 100px; 
 }
 
-h2 {
-  margin-bottom: 20px;
-  color: #333;
+.form h2 {
+  margin-bottom: 30px;
+  color: #131313;
 }
 
 .error {
@@ -32,28 +41,37 @@ h2 {
 }
 
 .input {
-  background-color: #fff;
+  background-color: #131313;
+  color: white;
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   font-size: 16px;
+  border: #131313;
+  border-style: 1px;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-  width: 100%;
+  width: 50%;
 }
 
 .button {
-  background-color: #007bff;
+  background-color: rgba(52, 52, 52, 0.7);
+  background-image: url('../../images/pokeball3.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
   color: #fff;
   border: none;
   border-radius: 4px;
-  padding: 10px;
+  padding: 20px;
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s ease;
-  width: 100%;
+  width: 30%;
+  margin-top: 30px;
+  margin-bottom: 10px;
 }
 
 .button:hover {
-  background-color: #0056b3;
+  background-color: #343434;
 }

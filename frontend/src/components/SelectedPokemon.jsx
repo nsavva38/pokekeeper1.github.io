@@ -48,13 +48,10 @@ const SelectedPokemon = ({ teams = [], setTeams }) => {
   useEffect(() => {
     const fetchUserTeams = async () => {
       try {
-        console.log('Fetching teams data...');
         const response = await api.get('/teams');
         setTeams(response.data);
-        console.log('Teams fetched:', response.data);
       } catch (error) {
         if (error.response && error.response.status === 401) {
-          console.log("User not authenticated, clearing teams...");
           setTeams([]); 
         } else {
           console.error("Error fetching user teams:", error);
@@ -70,14 +67,20 @@ const SelectedPokemon = ({ teams = [], setTeams }) => {
       alert("Please select a team!");
       return;
     }
-
+  
     const team = teams.find((team) => team.name === selectedTeam);
 
-    if (team && team.pokemon.length >= 6) {
+  
+    if (!team) {
+      alert("Selected team not found!");
+      return;
+    }
+  
+    if (team.pokemon && team.pokemon.length >= 6) {
       alert("This team is full");
       return;
     }
-
+  
     try {
       const response = await api.post(`/teams/${team.id}/pokemon`, {
         pokemon: {
@@ -85,9 +88,15 @@ const SelectedPokemon = ({ teams = [], setTeams }) => {
           ability: pokemonDetails.ability,
         },
       });
+  
+      if (!response.status === 200) {
+        throw new Error('Failed to add Pokémon to team');
+      }
+  
+      const data = response.data;
       setTeams((prevTeams) => {
         return prevTeams.map((t) => 
-          t.id === team.id ? { ...t, pokemon: [...t.pokemon, pokemonDetails] } : t
+          t.id === team.id ? { ...t, pokemon: [...(t.pokemon || []), data] } : t
         );
       });
       alert(`${pokemonDetails.name[0].toUpperCase() + pokemonDetails.name.slice(1)} added to ${selectedTeam}!`);
@@ -169,20 +178,21 @@ const SelectedPokemon = ({ teams = [], setTeams }) => {
         </section>
 
         <section id="selected-pokemon-interaction">
-          <select
-            value={selectedTeam}
-            onChange={(event) => setSelectedTeam(event.target.value)}
-          >
-            <option value="">Select a Team</option>
-            {Array.isArray(teams) && teams.map((team) => (
-              <option key={team.id} value={team.name}>
-                {team.name || "Unnamed Team"}
-              </option>
-            ))}
-          </select>
+        <select
+          value={selectedTeam}
+          onChange={(event) => setSelectedTeam(event.target.value)}
+          style={{ color: '#e0e0e0', backgroundColor: '#333' }} 
+        >
+          <option value="" style={{ color: '#e0e0e0' }}>Select a Team</option>
+          {Array.isArray(teams) && teams.map((team) => (
+            <option key={team.id} value={team.name} style={{ color: '#e0e0e0' }}>
+              {team.name || "Unnamed Team"}
+            </option>
+          ))}
+        </select>
 
           <button onClick={addToTeam}>Add to Team</button>
-          <button onClick={() => navigate(`/NationalDex`)}>Back to National Dex</button>
+          <button onClick={() => navigate(`/NationalDex`)}>National Dex</button>
         </section>
       </section>
     </div>
