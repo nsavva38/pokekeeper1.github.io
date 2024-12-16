@@ -6,10 +6,6 @@ const Home = () => {
   const Navigate = useNavigate();
   return (
     <section className='homepage'>
-      {/* <header className={styles.header}>
-        <h1>PokéKeeper</h1>
-  
-      </header> */}
 
       <section className={styles.hero}>
         <h1>Welcome to PokéKeeper</h1>
@@ -27,10 +23,6 @@ const Home = () => {
           <h2>Explore the Dex</h2>
           <p>Search and learn about all your favorite Pokémon.</p>
         </div>
-        {/* <div className={styles.feature}>
-          <h2>Track Progress</h2>
-          <p>Keep track of your Pokémon battles and achievements.</p>
-        </div> */}
       </section>
 
       <footer className={styles.footer}>
