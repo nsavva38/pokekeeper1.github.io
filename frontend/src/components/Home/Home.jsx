@@ -6,7 +6,6 @@ const Home = () => {
   const Navigate = useNavigate();
   return (
     <section className='homepage'>
-
       <section className={styles.hero}>
         <h1>Welcome to PokéKeeper</h1>
         <p>Your ultimate Pokémon management tool</p>
