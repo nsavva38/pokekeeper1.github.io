@@ -1,19 +1,14 @@
-/* Account.modules.css */
+/* Account.module.css */
 .container {
   padding: 20px;
-  background-image: url('../../images/pokeball.png');
-  background-color: transparent;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  background: url('../../images/pokeball.png') center/cover no-repeat transparent;
   background-color: #131313;
   color: #e0e0e0;
-  min-height: 100vh; /* Ensure full height */
+  min-height: 100vh;
 }
 
 .accountTitle {
-  margin-top: 100px; /* Ensure enough space from the nav */
-  margin-bottom: 60px;
+  margin: 100px 0 60px;
   color: white;
   text-align: center;
 }
@@ -24,30 +19,25 @@
 
 .form input {
   background-color: #333;
-  border: 1px solid #444;
+  border: 1px solid white;
   color: #e0e0e0;
   padding: 10px;
   margin-right: 10px;
   border-radius: 4px;
-  border-color: white;
 }
 
 .form button {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url('../../images/pokeball2.png');
-  background-color: transparent;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  background: url('../../images/pokeball2.png') center/contain no-repeat transparent;
   position: relative;
   top: -43px;
   left: 200px;
   color: transparent;
   border: none;
   border-radius: 4px;
-  width: 50px; /* Adjust as needed */
+  width: 50px;
   height: 50px;
   cursor: pointer;
   text-align: center;
@@ -82,18 +72,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url('../../images/pokeball2.png');
-  background-color: transparent;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  background: url('../../images/pokeball2.png') center/contain no-repeat transparent;
   position: relative;
   top: 10px;
   right: 5px;
   color: transparent;
   border: none;
   border-radius: 4px;
-  width: 50px; /* Adjust as needed */
+  width: 50px;
   height: 50px;
   cursor: pointer;
   text-align: center;
@@ -108,12 +94,12 @@
 .member {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Align items horizontally */
+  justify-content: space-between;
   margin-bottom: 10px;
   padding: 10px;
-  border: 1px solid #444; /* Add a border for better visibility */
+  border: 1px solid #444;
   border-radius: 4px;
-  background-color: #222; /* Background color for the member */
+  background-color: #222;
 }
 
 .member img {
@@ -123,7 +109,7 @@
 
 .member p {
   margin-right: 10px;
-  color: #e0e0e0; /* Text color for better readability */
+  color: #e0e0e0;
 }
 
 .member button {
@@ -143,16 +129,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url('../../images/pokeball2.png');
-  background-color: transparent;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  background: url('../../images/pokeball2.png') center/contain no-repeat transparent;
   position: relative;
   color: transparent;
   border: none;
   border-radius: 4px;
-  width: 50px; /* Adjust as needed */
+  width: 50px;
   height: 50px;
   cursor: pointer;
   text-align: center;
