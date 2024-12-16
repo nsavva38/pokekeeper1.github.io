@@ -5,15 +5,16 @@ import styles from './Home.module.css';
 const Home = () => {
   const Navigate = useNavigate();
   return (
-    <>
-      <header className={styles.header}>
+    <section className='homepage'>
+      {/* <header className={styles.header}>
         <h1>PokéKeeper</h1>
   
-      </header>
+      </header> */}
 
       <section className={styles.hero}>
         <h1>Welcome to PokéKeeper</h1>
         <p>Your ultimate Pokémon management tool</p>
+        <p>Click the PokéBall to Get Started</p>
         <button onClick={() => Navigate(`/register`) }>Get Started</button>
       </section>
 
@@ -26,17 +27,17 @@ const Home = () => {
           <h2>Explore the Dex</h2>
           <p>Search and learn about all your favorite Pokémon.</p>
         </div>
-        <div className={styles.feature}>
+        {/* <div className={styles.feature}>
           <h2>Track Progress</h2>
           <p>Keep track of your Pokémon battles and achievements.</p>
-        </div>
+        </div> */}
       </section>
 
       <footer className={styles.footer}>
         <p>&copy; 2024 PokéKeeper. All rights reserved.</p>
         <p><Link to="/contact">Contact Us</Link></p>
       </footer>
-    </>
+    </section>
   );
 };
 
