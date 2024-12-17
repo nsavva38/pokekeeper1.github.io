@@ -102,6 +102,8 @@ const SelectedPokemon = ({ teams = [], setTeams }) => {
     } catch (error) {
       console.error("Error adding Pokémon to team:", error);
     }
+
+    setSelectedTeam("");
   };
 
   if (!pokemonDetails) {

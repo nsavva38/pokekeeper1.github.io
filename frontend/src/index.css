@@ -55,10 +55,6 @@ body {
 }
 
 
-/* .page-title {
-  margin-top: 100px;
-} */
-
 #pokemon151 {
   display: flex;
   flex-wrap: wrap;
@@ -88,12 +84,11 @@ body {
 
 #pokemon151 > div:hover {
   background-image: url('./images/pokeball4.png');
-  width: 150px;
+  z-index: 10;
+  transform: scale(1.5);
   h3 {
-    margin-top: 20px;
-  }
-  img {
-    width: 140px;
+    margin-top: 11px;
+    color: black;
   }
 }
 
@@ -110,49 +105,46 @@ body {
   flex-direction: column;
   align-items: center;
   margin: 10px auto;
-  margin-top: 75px;
+  margin-top: 59px;
   font-size: 20px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   background-color: rgb(48, 48, 48);
   max-width: 900px;
   height: 1040px;
   border: 5px solid black;
-
-  position: relative; /* Ensure relative positioning for stacking context */
-  z-index: 11; /* Set a higher stacking order for the main content */
+  position: relative;
+  z-index: 11;
 }
 
 .left-margin-image,
 .right-margin-image {
   position: absolute;
-  top: 50%; /* Center vertically relative to #selected-pokemon */
+  top: 50%;
   transform: translateY(-50%);
-  width: 100px; /* Adjust size as needed */
+  width: 100px;
   height: auto;
-  z-index: 10; /* Lower stacking order for images to appear behind */
-  
-    /* Creates a colored outline */
-    cursor: default;
+  z-index: 10;
+  cursor: default;
 }
 
 .left-margin-image {
-  left: -20px; /* Adjust for spacing from the #selected-pokemon element */
+  left: -20px;
   width: 800px;
   z-index: 4;
 }
 
 #l2 {
-  left: -350px; /* Adjust for spacing from the #selected-pokemon element */
+  left: -350px;
   width: 1500px;
   z-index: 3;
 }
 #l3 {
-  left: -1200px; /* Adjust for spacing from the #selected-pokemon element */
+  left: -1200px;
   width: 3500px;
   z-index: 2;
 }
 #l4 {
-  left: -2800px; /* Adjust for spacing from the #selected-pokemon element */
+  left: -2800px;
   
   width: 7000px;
   
@@ -160,7 +152,7 @@ body {
 }
 
 #background-pokeball {
-  left: -300px; /* Adjust for spacing from the #selected-pokemon element */
+  left: -300px;
   width: 2500px;
   
   z-index: 0;
@@ -169,23 +161,23 @@ body {
 
 
 .right-margin-image {
-  right: -425px; /* Adjust for spacing from the #selected-pokemon element */
+  right: -425px;
   width: 800px;
   z-index: 4;
 }
 
 #r2 {
-  right: -795px; /* Adjust for spacing from the #selected-pokemon element */
+  right: -795px;
   width: 1500px;
   z-index: 3;
 }
 #r3 {
-  right: -1940px; /* Adjust for spacing from the #selected-pokemon element */
+  right: -1940px;
   width: 3500px;
   z-index: 2;
 }
 #r4 {
-  left: -1400px; /* Adjust for spacing from the #selected-pokemon element */
+  left: -1400px;
   
   width: 7000px;
   
@@ -197,30 +189,6 @@ body {
   font-family: Didot, serif;
 }
 
-
-/* #selected-pokemon h2 {
-  color: black;
-  text-align: center;
-} */
-
-/* #selected-pokemon > .poke-images {
-  flex-direction: row;
-  background-color: black;
-  display: inline-block;
-  width: 500px;
-  height: 390px;
-  text-align: center;
-} */
-
-/* #selected-pokemon-details > .poke-images img {
-  display: flex;
-  flex-direction: column;
-  cursor: default;
-  width: 200px;
-  height: 200px;
-  margin-right: -100px;
-  text-align: center;
-} */
 
 #selected-pokemon-details img {
   cursor: default;
@@ -239,9 +207,7 @@ body {
   background-color: rgb(14, 14, 14);
   border: 10px solid rgb(111, 97, 97);
   text-align: center;
-
   box-shadow: 0px 0px 100px 1000px rgba(57, 56, 56, 0.5); 
-
 }
 
 #selected-pokemon-details h2 {
@@ -262,7 +228,6 @@ body {
   align-items: center;
   justify-content: center;
   margin-top: 20px;
-  /* background-color: rgb(48, 48, 48); */
   width: 1000px;
   height: 300px;
   padding: 50px 0;
@@ -271,17 +236,26 @@ body {
 
 #selected-pokemon-interaction > select {
   appearance: none;
-  background: url('./images/pokeball2.png') no-repeat right center;
+  background: url('./images/pokeball4.png') no-repeat right center;
   background-size: 100px;
   height: 140px;
   margin: 10px;
   padding: 8px;
-  /* font-size: 14px; */
-  color: white;
+  color: black;
   border: none;
-  /* font-weight: bold;
-  text-shadow: 1px 1px 2px black;
-  text-align: center; */
+}
+
+#selected-pokemon-interaction > select:hover {
+  background: url('./images/pokeball4.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #b25463;
+}
+
+#team-select {
+  padding-top: 10px;
+  padding-bottom: 0px;
 }
 
 #selected-pokemon-interaction > button {
@@ -305,6 +279,10 @@ body {
   font-weight: bold;
   text-shadow: 1px 1px 2px black;
   text-align: center;
+}
+
+#selected-pokemon-interaction > button:hover {
+  background-color: #434343;
 }
 
 
@@ -344,6 +322,3 @@ nav {
   padding: 10px;
 }
 
-/* nav a {
-  margin-right: 5px;
-} */

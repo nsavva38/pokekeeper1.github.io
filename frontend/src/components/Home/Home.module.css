@@ -69,6 +69,7 @@
 
 .hero button:hover {
   background-color: #9f6fe0;
+  color: white;
   background-image: url('../../images/pokeball3.png');
 }
 
