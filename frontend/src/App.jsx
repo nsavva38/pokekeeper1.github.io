@@ -54,13 +54,9 @@ const App = () => {
   const searchFunction = (event) => {
     event.preventDefault();
     const pokemonName = searchedPokemon.trim().toLowerCase();
-    const pokemonExists = pokemon.some((poke) => poke.name === pokemonName);
 
-    if (pokemonExists) {
       navigate(`/NationalDex/${pokemonName}`);
-    } else {
-      alert("Pokémon not found in the National Dex.");
-    }
+
     setSearchedPokemon("");
   };
 
