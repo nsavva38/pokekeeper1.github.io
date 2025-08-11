@@ -10,7 +10,8 @@ const PORT = process.env.PORT || 3000;
 const allowedOrigins = [
   'https://pokekeeper.netlify.app', 
   'http://localhost:5173',
-  'https://deploy-preview-42--pokekeeper.netlify.app'
+  'https://deploy-preview-42--pokekeeper.netlify.app',
+  'https://nsavva38.github.io'
 ];
 
 app.use(cors({
