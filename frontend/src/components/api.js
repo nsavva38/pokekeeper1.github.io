@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'https://pokekeeper1-github-io.onrender.com';
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 const api = axios.create({
   baseURL,
 });
