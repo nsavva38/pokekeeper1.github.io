@@ -12,9 +12,13 @@ const Account = ({ setIsAuthenticated, pokemon }) => {
   console.log(pokemon151);
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      setIsAuthenticated(false);
+      navigate('/login');
+      return;
+    }
     const fetchUserData = async () => {
-      const token = localStorage.getItem('token');
-      if (token) {
         try {
           const response = await api.get('/teams', {
             headers: { Authorization: `Bearer ${token}` }
@@ -29,7 +33,6 @@ const Account = ({ setIsAuthenticated, pokemon }) => {
             navigate('/login');
           }
         }
-      }
     };
 
     fetchUserData();
