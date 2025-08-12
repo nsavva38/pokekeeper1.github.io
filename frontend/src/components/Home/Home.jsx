@@ -26,7 +26,6 @@ const Home = () => {
 
       <footer className={styles.footer}>
         <p>&copy; 2024 PokéKeeper. All rights reserved.</p>
-        <p><Link to="/contact">Contact Us</Link></p>
       </footer>
     </section>
   );
